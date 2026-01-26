@@ -4,15 +4,17 @@ FROM n8nio/n8n:latest
 # Cambiar a root para instalar dependencias adicionales
 USER root
 
-# Instalar git, python y otras dependencias
-RUN apk add --no-cache \
+# Instalar git, python y otras dependencias (la imagen n8n usa Debian, no Alpine)
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends \
     git \
     python3 \
-    py3-pip \
+    python3-pip \
     bash \
-    curl
+    curl \
+    && rm -rf /var/lib/apt/lists/*
 
-# Instalar requests para Python (--break-system-packages es seguro en contenedores)
+# Instalar requests para Python
 RUN pip3 install --no-cache-dir --break-system-packages requests
 
 # Crear directorios necesarios
