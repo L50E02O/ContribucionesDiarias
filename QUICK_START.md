@@ -175,9 +175,49 @@ docker-compose down
 docker-compose up -d
 ```
 
+## 🔄 Modo Pull Request (Opcional)
+
+Si prefieres que el sistema cree PRs en vez de commits directos:
+
+1. **Edita `config/config.json`:**
+```json
+{
+  "use_pr_workflow": true,
+  "github_token": "ghp_tu_token_con_permisos_repo",
+  "github_repo_owner": "tu_usuario",
+  "github_repo_name": "tu_repo"
+}
+```
+
+2. **Importa el workflow de PRs:**
+   - En n8n, importa `n8n-workflow-pr.json` en vez del workflow normal
+
+3. **Prueba:**
+```bash
+docker-compose exec n8n python3 /scripts/pr_automator.py
+```
+
+## ☁️ Desplegar en Railway (24/7)
+
+Para que funcione automáticamente sin tu computadora:
+
+**Railway** (Recomendado):
+- ✅ $5 crédito gratis/mes
+- ✅ Sin sleep (funciona 24/7)
+- ✅ Setup en 5 minutos
+
+**Pasos rápidos:**
+1. Push proyecto a GitHub
+2. Conecta Railway con tu repo
+3. Configura variables de entorno
+4. ¡Listo!
+
+**Guía completa:** [DEPLOYMENT.md](DEPLOYMENT.md)
+
 ## 📞 Necesitas Ayuda?
 
 - Lee el `README.md` completo para más detalles
+- Ver despliegue cloud: `DEPLOYMENT.md`
 - Verifica los logs: `docker-compose logs -f`
 - Ejecuta el test: `docker-compose exec n8n python3 /scripts/test_commit.py`
 

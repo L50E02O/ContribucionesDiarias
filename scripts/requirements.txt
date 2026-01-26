@@ -1,0 +1,2 @@
+# Dependencias de Python para los scripts de automatización
+requests>=2.31.0

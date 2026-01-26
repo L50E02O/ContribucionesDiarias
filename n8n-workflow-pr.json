@@ -1,0 +1,198 @@
+{
+  "name": "GitHub Daily PR Automation",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "hours",
+              "hoursInterval": 24
+            }
+          ]
+        }
+      },
+      "id": "cron-trigger",
+      "name": "Schedule Trigger",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.1,
+      "position": [
+        240,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "functionCode": "// Leer configuración para determinar qué script ejecutar\nconst fs = require('fs');\nconst config = JSON.parse(fs.readFileSync('/config/config.json', 'utf8'));\n\nconst usePRWorkflow = config.use_pr_workflow || false;\n\nreturn {\n  json: {\n    usePRWorkflow: usePRWorkflow,\n    script: usePRWorkflow ? '/scripts/pr_automator.py' : '/scripts/commit_automator.py',\n    mode: usePRWorkflow ? 'Pull Request' : 'Direct Commit'\n  }\n};"
+      },
+      "id": "check-mode",
+      "name": "Check Mode",
+      "type": "n8n-nodes-base.function",
+      "typeVersion": 1,
+      "position": [
+        460,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "command": "={{$json.script}}"
+      },
+      "id": "execute-script",
+      "name": "Execute Automation Script",
+      "type": "n8n-nodes-base.executeCommand",
+      "typeVersion": 1,
+      "position": [
+        680,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "string": [
+            {
+              "value1": "={{$json.exitCode}}",
+              "operation": "equals",
+              "value2": "0"
+            }
+          ]
+        }
+      },
+      "id": "check-success",
+      "name": "Check Success",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        900,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "functionCode": "const exitCode = $input.first().json.exitCode;\nconst stdout = $input.first().json.stdout;\nconst timestamp = new Date().toISOString();\n\nreturn {\n  json: {\n    status: 'success',\n    timestamp: timestamp,\n    exitCode: exitCode,\n    message: 'Automation completed successfully',\n    output: stdout\n  }\n};"
+      },
+      "id": "success-handler",
+      "name": "Success Handler",
+      "type": "n8n-nodes-base.function",
+      "typeVersion": 1,
+      "position": [
+        1120,
+        200
+      ]
+    },
+    {
+      "parameters": {
+        "functionCode": "const exitCode = $input.first().json.exitCode;\nconst stdout = $input.first().json.stdout;\nconst stderr = $input.first().json.stderr;\nconst timestamp = new Date().toISOString();\n\nreturn {\n  json: {\n    status: 'error',\n    timestamp: timestamp,\n    exitCode: exitCode,\n    message: 'Automation failed',\n    stdout: stdout,\n    stderr: stderr\n  }\n};"
+      },
+      "id": "error-handler",
+      "name": "Error Handler",
+      "type": "n8n-nodes-base.function",
+      "typeVersion": 1,
+      "position": [
+        1120,
+        400
+      ]
+    },
+    {
+      "parameters": {
+        "path": "/logs/automation_log.json",
+        "operation": "append",
+        "fileName": "={{$json.timestamp}}_{{$json.status}}.json",
+        "fileContent": "={{JSON.stringify($json, null, 2)}}"
+      },
+      "id": "log-result",
+      "name": "Log Result",
+      "type": "n8n-nodes-base.writeFile",
+      "typeVersion": 1,
+      "position": [
+        1340,
+        300
+      ]
+    }
+  ],
+  "connections": {
+    "Schedule Trigger": {
+      "main": [
+        [
+          {
+            "node": "Check Mode",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Check Mode": {
+      "main": [
+        [
+          {
+            "node": "Execute Automation Script",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Execute Automation Script": {
+      "main": [
+        [
+          {
+            "node": "Check Success",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Check Success": {
+      "main": [
+        [
+          {
+            "node": "Success Handler",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Error Handler",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Success Handler": {
+      "main": [
+        [
+          {
+            "node": "Log Result",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Error Handler": {
+      "main": [
+        [
+          {
+            "node": "Log Result",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 1,
+  "updatedAt": "2026-01-26T00:00:00.000Z",
+  "versionId": "1"
+}

@@ -264,8 +264,74 @@ N8N_BASIC_AUTH_PASSWORD=tu_password_seguro
 
 2. Modifica `config/config.json` para usar variables de entorno (requiere modificación del script).
 
+## 🔄 Modo Pull Request
+
+Este sistema ahora soporta dos modos de operación:
+
+### Modo 1: Commits Directos (por defecto)
+Hace commits directamente a la rama principal.
+
+### Modo 2: Pull Requests Automáticos
+Crea una rama, hace commit, crea PR y lo mergea automáticamente.
+
+**Para activar el modo PR:**
+
+1. Edita `config/config.json`:
+```json
+{
+  "use_pr_workflow": true,
+  "github_token": "ghp_tu_token_aqui",
+  "github_repo_owner": "tu_usuario",
+  "github_repo_name": "nombre_repo",
+  "merge_method": "squash",
+  "auto_cleanup_branch": true
+}
+```
+
+2. Importa el workflow `n8n-workflow-pr.json` en vez de `n8n-workflow.json`
+
+3. Crea un token de GitHub con permisos completos de `repo`
+
+**Métodos de merge disponibles:**
+- `squash` - Combina todos los commits en uno (recomendado)
+- `merge` - Merge commit tradicional
+- `rebase` - Rebase y fast-forward
+
+## ☁️ Despliegue en Railway (24/7 Gratis)
+
+Para que el sistema funcione automáticamente 24/7 sin tu computadora encendida, despliégalo en Railway:
+
+**¿Por qué Railway?**
+- ✅ **$5 crédito gratis/mes** (suficiente para este proyecto)
+- ✅ **Sin sleep automático** (funciona 24/7)
+- ✅ **Cron jobs funcionan** perfectamente
+- ✅ **Setup en 5 minutos**
+
+**Ver guía completa:** [DEPLOYMENT.md](DEPLOYMENT.md)
+
+### Inicio Rápido - Railway:
+
+```bash
+# 1. Push tu proyecto a GitHub
+git init
+git add .
+git commit -m "Initial commit: Automated GitHub contributions"
+git remote add origin https://github.com/TU_USUARIO/commit-automation.git
+git push -u origin main
+
+# 2. Ve a railway.app y regístrate con GitHub
+# 3. New Project → Deploy from GitHub repo
+# 4. Selecciona tu repositorio
+# 5. Configura variables de entorno en Railway
+# 6. ¡Accede a n8n y activa el workflow!
+```
+
+**Guía detallada paso a paso:** [DEPLOYMENT.md](DEPLOYMENT.md)
+
 ## 📈 Mejoras Futuras
 
+- [x] Sistema de Pull Requests automáticos
+- [x] Despliegue en cloud (Railway, Render, Fly.io)
 - [ ] Notificaciones por email/Slack en caso de error
 - [ ] Dashboard web para monitoreo
 - [ ] Soporte para múltiples repositorios

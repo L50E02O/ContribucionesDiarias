@@ -2,7 +2,9 @@ version: '3.8'
 
 services:
   n8n:
-    image: n8nio/n8n:latest
+    build:
+      context: .
+      dockerfile: Dockerfile
     container_name: n8n_commit_automation
     restart: unless-stopped
     ports:
@@ -16,31 +18,21 @@ services:
       - N8N_LOG_LEVEL=info
       - WEBHOOK_URL=http://localhost:5678/
       - N8N_ENCRYPTION_KEY=my-encryption-key-change-this
+      # Variables opcionales para el modo PR
+      - GITHUB_TOKEN=${GITHUB_TOKEN:-}
+      - GIT_USER_NAME=${GIT_USER_NAME:-Commit Bot}
+      - GIT_USER_EMAIL=${GIT_USER_EMAIL:-bot@commitdiario.com}
     volumes:
       - n8n_data:/home/node/.n8n
       - ./scripts:/scripts
       - ./config:/config
       - ./repo:/repo
+      - ./logs:/logs
     networks:
       - n8n_network
 
-  # Opcional: base de datos PostgreSQL para n8n (recomendado para producción)
-  # postgres:
-  #   image: postgres:15-alpine
-  #   container_name: n8n_postgres
-  #   restart: unless-stopped
-  #   environment:
-  #     - POSTGRES_USER=n8n
-  #     - POSTGRES_PASSWORD=n8n_password
-  #     - POSTGRES_DB=n8n
-  #   volumes:
-  #     - postgres_data:/var/lib/postgresql/data
-  #   networks:
-  #     - n8n_network
-
 volumes:
   n8n_data:
-  # postgres_data:
 
 networks:
   n8n_network:

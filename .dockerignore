@@ -1,0 +1,30 @@
+# Directorios que no deben ir en la imagen Docker
+repo/
+logs/
+.git/
+.gitignore
+
+# Node modules
+node_modules/
+
+# Archivos de sistema
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+*~
+
+# Documentación (se incluye para referencia en Railway)
+# README.md
+# DEPLOYMENT.md
+# QUICK_START.md
+
+# Docker files (no necesarios dentro de la imagen)
+docker-compose.yml
+.dockerignore
+
+# Archivos de ejemplo y plantillas
+.env.example
+
+# Archivos de Railway/Render
+railway.json
