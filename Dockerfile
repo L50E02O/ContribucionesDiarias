@@ -1,43 +1,50 @@
-# Usar la imagen oficial de n8n como base
-FROM n8nio/n8n:latest
+# Usar Node.js Alpine como base (igual que n8n oficial)
+FROM node:20-alpine3.20
 
-# Cambiar a root para instalar dependencias adicionales
-USER root
-
-# Instalar git, python y otras dependencias (la imagen n8n usa Debian, no Alpine)
-RUN apt-get update && \
-    apt-get install -y --no-install-recommends \
+# Instalar dependencias del sistema (git, python, etc.)
+RUN apk add --no-cache \
     git \
+    openssh \
     python3 \
-    python3-pip \
+    py3-pip \
     bash \
     curl \
-    && rm -rf /var/lib/apt/lists/*
+    tini \
+    tzdata \
+    ca-certificates && \
+    # Instalar n8n globalmente
+    npm install -g n8n && \
+    # Instalar requests de Python
+    pip3 install --no-cache-dir --break-system-packages requests && \
+    # Limpiar cache
+    rm -rf /root/.npm /tmp/*
 
-# Instalar requests para Python
-RUN pip3 install --no-cache-dir --break-system-packages requests
+# Crear usuario node (ya existe en la imagen base)
+RUN mkdir -p /home/node/.n8n /scripts /config /repo /logs && \
+    chown -R node:node /home/node /scripts /config /repo /logs
 
-# Crear directorios necesarios
-RUN mkdir -p /scripts /config /repo /logs && \
-    chown -R node:node /scripts /config /repo /logs
-
-# Copiar scripts
+# Copiar archivos
 COPY --chown=node:node scripts/ /scripts/
-
-# Copiar configuración
 COPY --chown=node:node config/ /config/
 
-# Dar permisos de ejecución a los scripts
-RUN chmod +x /scripts/*.py 2>/dev/null || true && \
-    chmod +x /scripts/*.sh 2>/dev/null || true
+# Permisos de ejecución
+RUN chmod +x /scripts/*.py /scripts/*.sh 2>/dev/null || true
 
-# Volver al usuario node por seguridad
+# Cambiar a usuario node
 USER node
 
-# Variables de entorno adicionales
+WORKDIR /home/node
+
+# Variables de entorno
 ENV N8N_LOG_LEVEL=info \
     GENERIC_TIMEZONE=America/Bogota \
-    TZ=America/Bogota
+    TZ=America/Bogota \
+    NODE_ENV=production
 
-# El puerto y CMD ya están definidos en la imagen base n8nio/n8n
-# No necesitamos redefinirlos
+EXPOSE 5678
+
+# Usar tini como init system
+ENTRYPOINT ["tini", "--"]
+
+# Iniciar n8n
+CMD ["n8n", "start"]
