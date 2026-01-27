@@ -47,13 +47,13 @@ class SetupTester:
         self.total_tests += 1
         if passed:
             self.success_count += 1
-            print(f"✅ {name}")
+            print(f"OK: {name}")
             if message:
-                print(f"   ℹ️  {message}")
+                print(f"   INFO: {message}")
         else:
-            print(f"❌ {name}")
+            print(f"ERROR: {name}")
             if message:
-                print(f"   ⚠️  {message}")
+                print(f"   ADVERTENCIA: {message}")
 
     def test_config_file(self) -> bool:
         """
@@ -362,9 +362,9 @@ class SetupTester:
         Returns:
             True si todos los tests pasaron
         """
-        self.print_header("🧪 Verificación de Configuración del Sistema")
+        self.print_header("TEST: Verificación de Configuración del Sistema")
         
-        print("\n📋 Ejecutando tests...\n")
+        print("\nINFO: Ejecutando tests...\n")
         
         # Ejecutar tests
         self.test_config_file()
@@ -377,40 +377,40 @@ class SetupTester:
         self.test_scripts_exist()
         
         # Resumen
-        self.print_header("📊 Resumen de Tests")
+        self.print_header("RESUMEN: Resumen de Tests")
         
-        print(f"\n✅ Tests exitosos: {self.success_count}/{self.total_tests}")
+        print(f"\nOK: Tests exitosos: {self.success_count}/{self.total_tests}")
         
         if self.warnings:
-            print("\n⚠️  Advertencias:")
+            print("\nADVERTENCIA: Advertencias:")
             for warning in self.warnings:
-                print(f"   • {warning}")
+                print(f"   - {warning}")
         
         if self.errors:
-            print("\n❌ Errores críticos:")
+            print("\nERROR: Errores críticos:")
             for error in self.errors:
-                print(f"   • {error}")
-            print("\n🔧 Solución:")
+                print(f"   - {error}")
+            print("\nSOLUCION: Solución:")
             print("   1. Ejecuta: railway run bash")
             print("   2. Ejecuta: bash /scripts/setup_railway.sh")
             print("   3. Vuelve a ejecutar este test")
             return False
         
         if self.warnings:
-            print("\n⚠️  Hay advertencias pero el sistema puede funcionar")
+            print("\nADVERTENCIA: Hay advertencias pero el sistema puede funcionar")
             print("   Considera resolver las advertencias para un funcionamiento óptimo")
         
         print("\n" + "=" * 70)
         if not self.errors:
-            print("✅ ¡Sistema configurado correctamente!")
+            print("OK: Sistema configurado correctamente")
             print("=" * 70)
-            print("\n🚀 Próximos pasos:")
+            print("\nINFO: Próximos pasos:")
             print("   1. Ve a n8n en tu URL de Railway")
             print("   2. Importa el workflow correspondiente")
             print("   3. Activa el workflow (toggle verde)")
             print("   4. Prueba manualmente:")
             print("      python3 /scripts/commit_automator.py")
-            print("\n✨ El sistema generará commits automáticos cada 24 horas\n")
+            print("\nINFO: El sistema generará commits automáticos cada 24 horas\n")
             return True
         
         return False

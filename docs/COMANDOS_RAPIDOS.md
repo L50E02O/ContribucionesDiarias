@@ -1,10 +1,10 @@
-# ⚡ Comandos Rápidos - Referencia
+# Comandos Rápidos - Referencia
 
 Comandos útiles para gestionar tu sistema de commits automáticos.
 
 ---
 
-## 🚂 Railway CLI
+## Railway CLI
 
 ### Instalación y Configuración
 
@@ -43,7 +43,7 @@ railway up
 
 ---
 
-## 🔧 Configuración Inicial (Dentro del Contenedor)
+## Configuración Inicial (Dentro del Contenedor)
 
 ```bash
 # 1. Acceder al contenedor
@@ -69,7 +69,7 @@ git push -u origin main
 
 ---
 
-## 🧪 Pruebas y Verificación
+## Pruebas y Verificación
 
 ### Verificar Configuración
 
@@ -103,7 +103,7 @@ git config --list
 
 ---
 
-## 📝 Editar Configuración
+## Editar Configuración
 
 ### Ver Configuración Actual
 
@@ -141,7 +141,7 @@ railway run bash
 
 # Dentro del contenedor:
 cd /config
-vi config.json  # o nano config.json
+vi config.json # o nano config.json
 
 # Los cambios se aplican inmediatamente
 # (pero se perderán en el próximo redeploy)
@@ -149,7 +149,7 @@ vi config.json  # o nano config.json
 
 ---
 
-## 🔄 Gestión del Repositorio
+## Gestión del Repositorio
 
 ### Sincronizar Repositorio
 
@@ -186,7 +186,7 @@ git remote add origin https://github.com/TU_USUARIO/commitDiario.git
 
 ---
 
-## 📊 Monitoreo
+## Monitoreo
 
 ### Ver Logs del Sistema
 
@@ -213,7 +213,7 @@ netstat -tlnp | grep 5678
 
 ---
 
-## 🔐 Gestión de Tokens y Credenciales
+## Gestión de Tokens y Credenciales
 
 ### Actualizar Token de GitHub
 
@@ -234,7 +234,7 @@ railway variables set N8N_BASIC_AUTH_PASSWORD=nueva_password
 
 ---
 
-## 🐛 Debugging
+## Debugging
 
 ### Ver Errores de Git
 
@@ -272,7 +272,7 @@ railway up
 
 ---
 
-## 📦 Actualizar Scripts
+## Actualizar Scripts
 
 ### Actualizar desde GitHub
 
@@ -310,7 +310,7 @@ git push
 
 ---
 
-## 🗑️ Limpieza y Mantenimiento
+## Limpieza y Mantenimiento
 
 ### Limpiar Logs Antiguos
 
@@ -337,7 +337,7 @@ git push origin --delete $(git branch -r | grep auto-contribution | sed 's/origi
 
 ---
 
-## 🔄 Cambiar Modo de Operación
+## Cambiar Modo de Operación
 
 ### De Commits Directos a Pull Requests
 
@@ -374,7 +374,7 @@ git push
 
 ---
 
-## 🚨 Comandos de Emergencia
+## Comandos de Emergencia
 
 ### Detener Automatización
 
@@ -401,7 +401,7 @@ git push
 
 ---
 
-## 📋 Checklist de Mantenimiento Semanal
+## Checklist de Mantenimiento Semanal
 
 ```bash
 # 1. Verificar que el workflow está activo
@@ -422,7 +422,7 @@ railway logs | grep -i error
 
 ---
 
-## 🔗 Enlaces Útiles
+## Enlaces Útiles
 
 ### Railway
 
@@ -441,7 +441,7 @@ railway logs | grep -i error
 
 ---
 
-## 💡 Tips y Trucos
+## Tips y Trucos
 
 ### Ejecutar Múltiples Comandos
 
@@ -480,7 +480,7 @@ railway up
 
 ---
 
-## 🎯 Comandos Más Usados (Top 10)
+## Comandos Más Usados (Top 10)
 
 ```bash
 # 1. Ver logs en tiempo real

@@ -1,16 +1,16 @@
-# ⚡ Guía de Inicio Rápido
+# Guía de Inicio Rápido
 
 Configura tu sistema de commits diarios en 10 minutos.
 
-## 📋 Requisitos Previos
+## Requisitos Previos
 
 - Cuenta de GitHub
 - Cuenta en Railway (gratis)
 - Token de GitHub con permisos `repo`
 
-## 🎯 Pasos de Configuración
+## Pasos de Configuración
 
-### 1️⃣ Preparar Repositorio GitHub
+### 1⃣ Preparar Repositorio GitHub
 
 ```bash
 # Crear un nuevo repositorio en GitHub
@@ -31,14 +31,14 @@ git branch -M main
 git push -u origin main
 ```
 
-### 2️⃣ Crear Token de GitHub
+### 2⃣ Crear Token de GitHub
 
 1. Ve a: https://github.com/settings/tokens
 2. Click "Generate new token (classic)"
 3. Selecciona scope: `repo` (acceso completo)
 4. Genera y **copia el token** (lo necesitarás después)
 
-### 3️⃣ Desplegar en Railway
+### 3⃣ Desplegar en Railway
 
 1. Ve a https://railway.app/
 2. **Login con GitHub**
@@ -47,7 +47,7 @@ git push -u origin main
 5. Selecciona tu repositorio
 6. Espera a que termine el build (2-3 minutos)
 
-### 4️⃣ Configurar Variables de Entorno
+### 4⃣ Configurar Variables de Entorno
 
 En Railway → Tu servicio → **Variables**, agrega:
 
@@ -62,14 +62,14 @@ GIT_USER_NAME=Tu Nombre Completo
 GIT_USER_EMAIL=tu-email@ejemplo.com
 ```
 
-### 5️⃣ Generar Dominio
+### 5⃣ Generar Dominio
 
 1. Railway → Tu servicio → **Settings** → **Networking**
 2. Click **"Generate Domain"**
 3. Puerto: **5678**
 4. Copia la URL generada
 
-### 6️⃣ Configurar n8n
+### 6⃣ Configurar n8n
 
 1. Abre la URL de Railway en tu navegador
 2. Login con `admin` / tu password
@@ -77,7 +77,7 @@ GIT_USER_EMAIL=tu-email@ejemplo.com
 4. Selecciona `n8n-workflow.json`
 5. **Activa** el workflow (toggle verde)
 
-### 7️⃣ Configurar Repositorio Target
+### 7⃣ Configurar Repositorio Target
 
 En Railway → Shell o usando Railway CLI:
 
@@ -101,15 +101,15 @@ git push -u origin main
 # Password: ghp_tu_token_github
 ```
 
-### 8️⃣ Agregar Volumen Persistente
+### 8⃣ Agregar Volumen Persistente
 
 1. Railway → Tu servicio → **Settings** → **Volumes**
 2. **Add Volume**:
-   - Mount Path: `/home/node/.n8n`
-   - Size: 1 GB
+ - Mount Path: `/home/node/.n8n`
+ - Size: 1 GB
 3. Click **"Add"**
 
-## ✅ Verificación
+## Verificación
 
 - [ ] Servicio en Railway está "Active"
 - [ ] Puedes acceder a n8n con la URL
@@ -119,7 +119,7 @@ git push -u origin main
 - [ ] Repositorio Git configurado
 - [ ] Prueba manual funcionó
 
-## 🧪 Prueba Manual
+## Prueba Manual
 
 ```bash
 railway run python3 /scripts/commit_automator.py
@@ -127,17 +127,17 @@ railway run python3 /scripts/commit_automator.py
 
 Deberías ver:
 ```
-✅ Commit realizado exitosamente
-✅ Push realizado exitosamente
+ Commit realizado exitosamente
+ Push realizado exitosamente
 ```
 
-## 🎉 ¡Listo!
+## ¡Listo!
 
 Tu sistema generará commits automáticamente cada 24 horas.
 
 **Verifica mañana tu perfil de GitHub** para ver la primera contribución automática.
 
-## 📚 Siguiente Paso
+## Siguiente Paso
 
 - [Configuración Avanzada](CONFIGURATION.md)
 - [Modo Pull Request](PR_MODE.md)

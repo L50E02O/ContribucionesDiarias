@@ -1,17 +1,17 @@
-# 🚂 Guía Rápida de Despliegue en Railway
+# Guía Rápida de Despliegue en Railway
 
-## ⚡ Antes de Desplegar
+## Antes de Desplegar
 
-### 1️⃣ Verifica que estos archivos existan:
+### 1⃣ Verifica que estos archivos existan:
 
 ```bash
 # En tu terminal, verifica:
-dir scripts       # Debe mostrar los archivos .py
-dir config        # Debe mostrar config.json
-type Dockerfile   # Debe mostrar el contenido
+dir scripts # Debe mostrar los archivos .py
+dir config # Debe mostrar config.json
+type Dockerfile # Debe mostrar el contenido
 ```
 
-### 2️⃣ Asegúrate de hacer commit de TODO:
+### 2⃣ Asegúrate de hacer commit de TODO:
 
 ```bash
 # Verifica el estado
@@ -25,7 +25,7 @@ git push
 
 ---
 
-## 🚀 Pasos de Despliegue
+## Pasos de Despliegue
 
 ### Paso 1: Push a GitHub
 
@@ -79,15 +79,15 @@ GITHUB_TOKEN=ghp_tu_token_github
 1. Railway → Tu servicio → **Settings**
 2. Scroll a **"Volumes"**
 3. **Add Volume**:
-   - Mount Path: `/home/node/.n8n`
-   - Size: 1 GB
+ - Mount Path: `/home/node/.n8n`
+ - Size: 1 GB
 4. Click **"Add"**
 
 Railway reiniciará el servicio automáticamente.
 
 ---
 
-## ❌ Errores Comunes y Soluciones
+## Errores Comunes y Soluciones
 
 ### Error: "config: not found"
 
@@ -133,10 +133,10 @@ git push
 1. Ve a Railway → **Deploy Logs**
 2. Lee el error completo
 3. Verifica que todos los archivos estén en GitHub:
-   ```bash
-   git ls-files
-   # Debe mostrar: Dockerfile, scripts/, config/, etc.
-   ```
+ ```bash
+ git ls-files
+ # Debe mostrar: Dockerfile, scripts/, config/, etc.
+ ```
 
 ### Error: "Service crashed"
 
@@ -149,11 +149,11 @@ git push
 
 ---
 
-## ✅ Verificación Post-Despliegue
+## Verificación Post-Despliegue
 
 ### 1. Verifica que el servicio está corriendo:
 
-- Railway → Tu servicio → Estado debe ser **"Active"** ✅
+- Railway → Tu servicio → Estado debe ser **"Active"** 
 
 ### 2. Obtén la URL:
 
@@ -164,8 +164,8 @@ git push
 
 - Abre la URL en tu navegador
 - Login:
-  - Usuario: `admin`
-  - Password: La que pusiste en `N8N_BASIC_AUTH_PASSWORD`
+ - Usuario: `admin`
+ - Password: La que pusiste en `N8N_BASIC_AUTH_PASSWORD`
 
 ### 4. Importa el workflow:
 
@@ -178,7 +178,7 @@ git push
 ```bash
 # Conecta a Railway:
 railway login
-railway link  # Selecciona tu proyecto
+railway link # Selecciona tu proyecto
 
 # Accede al contenedor:
 railway run bash
@@ -207,18 +207,18 @@ git push -u origin main
 railway run python3 /scripts/commit_automator.py
 
 # Deberías ver:
-# ✅ Commit realizado exitosamente
-# ✅ Push realizado exitosamente
+# Commit realizado exitosamente
+# Push realizado exitosamente
 ```
 
 ### 7. Verifica en GitHub:
 
 - Ve a tu repositorio en GitHub
-- Debes ver el commit que acabas de hacer ✅
+- Debes ver el commit que acabas de hacer 
 
 ---
 
-## 🎯 Checklist Final
+## Checklist Final
 
 Antes de dar por terminado, verifica:
 
@@ -233,7 +233,7 @@ Antes de dar por terminado, verifica:
 
 ---
 
-## 📞 Si Algo Sale Mal
+## Si Algo Sale Mal
 
 ### Ver logs en tiempo real:
 
@@ -261,10 +261,10 @@ railway run bash
 
 ---
 
-## 🎉 ¡Todo Listo!
+## ¡Todo Listo!
 
 Si completaste todos los pasos del checklist, tu sistema está funcionando correctamente.
 
 Los commits se generarán automáticamente cada 24 horas según el cron configurado en n8n.
 
-**Verifica mañana tu perfil de GitHub para ver la primera contribución automática.** 🔥
+**Verifica mañana tu perfil de GitHub para ver la primera contribución automática.** 

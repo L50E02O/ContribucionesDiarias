@@ -1,8 +1,8 @@
-# 🔄 Modo Pull Request
+# Modo Pull Request
 
 Guía completa para automatizar Pull Requests en GitHub.
 
-## 📖 ¿Qué es el Modo PR?
+## ¿Qué es el Modo PR?
 
 En lugar de hacer commits directos a la rama principal, el sistema:
 1. Crea una nueva rama
@@ -13,9 +13,9 @@ En lugar de hacer commits directos a la rama principal, el sistema:
 
 **Ventaja**: Genera **2+ contribuciones** por día (commit + merge) en lugar de 1.
 
-## ⚙️ Configuración
+## Configuración
 
-### 1️⃣ Crear Token de GitHub
+### 1⃣ Crear Token de GitHub
 
 Necesitas un token con permisos completos de repositorio:
 
@@ -24,7 +24,7 @@ Necesitas un token con permisos completos de repositorio:
 3. Selecciona scope: **`repo`** (todos los permisos)
 4. Genera y copia el token
 
-### 2️⃣ Configurar Variables en Railway
+### 2⃣ Configurar Variables en Railway
 
 Railway → Variables → Agregar:
 
@@ -32,20 +32,20 @@ Railway → Variables → Agregar:
 GITHUB_TOKEN=ghp_tu_token_completo_aqui
 ```
 
-### 3️⃣ Actualizar config.json
+### 3⃣ Actualizar config.json
 
 ```json
 {
-  "use_pr_workflow": true,
-  "github_token": "ghp_tu_token_aqui",
-  "github_repo_owner": "tu_usuario_github",
-  "github_repo_name": "nombre_del_repositorio",
-  "merge_method": "squash",
-  "auto_cleanup_branch": true
+ "use_pr_workflow": true,
+ "github_token": "ghp_tu_token_aqui",
+ "github_repo_owner": "tu_usuario_github",
+ "github_repo_name": "nombre_del_repositorio",
+ "merge_method": "squash",
+ "auto_cleanup_branch": true
 }
 ```
 
-### 4️⃣ Importar Workflow de PRs
+### 4⃣ Importar Workflow de PRs
 
 En n8n:
 1. **Workflows** → **Import from File**
@@ -53,7 +53,7 @@ En n8n:
 3. **Desactiva** el workflow anterior
 4. **Activa** este nuevo workflow
 
-## 🔧 Parámetros de Configuración
+## Parámetros de Configuración
 
 ### `use_pr_workflow`
 - **Tipo**: Boolean
@@ -81,9 +81,9 @@ En n8n:
 - **Tipo**: String
 - **Default**: `"squash"`
 - **Opciones**:
-  - `"squash"`: Combina todos los commits en uno (recomendado)
-  - `"merge"`: Merge commit tradicional
-  - `"rebase"`: Rebase y fast-forward
+ - `"squash"`: Combina todos los commits en uno (recomendado)
+ - `"merge"`: Merge commit tradicional
+ - `"rebase"`: Rebase y fast-forward
 
 ### `auto_cleanup_branch`
 - **Tipo**: Boolean
@@ -91,38 +91,38 @@ En n8n:
 - **Descripción**: Elimina la rama después del merge
 - **Valores**: `true` / `false`
 
-## 🚀 Cómo Funciona
+## Cómo Funciona
 
 ### Flujo Completo
 
 ```
 1. Workflow se ejecuta (cada 24h)
-   ↓
+ ↓
 2. Crea rama: auto-contribution-20260126-140530
-   ↓
+ ↓
 3. Hace commit en la rama
-   ↓
+ ↓
 4. Push de la rama a GitHub
-   ↓
+ ↓
 5. Crea Pull Request usando GitHub API
-   ↓
+ ↓
 6. Espera 5 segundos
-   ↓
+ ↓
 7. Mergea el PR automáticamente
-   ↓
+ ↓
 8. Elimina la rama (si auto_cleanup_branch=true)
-   ↓
-9. ✅ Completado
+ ↓
+9. Completado
 ```
 
 ### Contribuciones Generadas
 
 Cada ejecución genera:
-- ✅ 1 commit (en la rama)
-- ✅ 1 merge (del PR)
-- ✅ Total: **2 contribuciones** por día
+- 1 commit (en la rama)
+- 1 merge (del PR)
+- Total: **2 contribuciones** por día
 
-## 🧪 Prueba Manual
+## Prueba Manual
 
 ```bash
 # Conectar a Railway
@@ -134,24 +134,24 @@ python3 /scripts/pr_automator.py
 
 Deberías ver:
 ```
-🤖 Iniciando automatización de Pull Request
-🌿 Creando rama: auto-contribution-20260126-140530
-✅ Rama creada
-✅ Commit creado
-📤 Empujando rama...
-✅ Rama empujada exitosamente
-📝 Creando Pull Request...
-✅ Pull Request #123 creado exitosamente
-🔗 URL: https://github.com/user/repo/pull/123
+ Iniciando automatización de Pull Request
+ Creando rama: auto-contribution-20260126-140530
+ Rama creada
+ Commit creado
+ Empujando rama...
+ Rama empujada exitosamente
+ Creando Pull Request...
+ Pull Request #123 creado exitosamente
+ URL: https://github.com/user/repo/pull/123
 ⏳ Esperando 5 segundos antes del merge...
-🔄 Mergeando Pull Request #123...
-✅ Pull Request #123 mergeado exitosamente
-🗑️  Eliminando rama...
-✅ Rama eliminada completamente
-✅ Proceso de PR completado exitosamente
+ Mergeando Pull Request #123...
+ Pull Request #123 mergeado exitosamente
+ Eliminando rama...
+ Rama eliminada completamente
+ Proceso de PR completado exitosamente
 ```
 
-## 📊 Comparación: Commits vs PRs
+## Comparación: Commits vs PRs
 
 | Característica | Commits Directos | Pull Requests |
 |----------------|------------------|---------------|
@@ -161,7 +161,7 @@ Deberías ver:
 | **Token requerido** | No | Sí (con permisos repo) |
 | **Limpieza** | No aplica | Automática |
 
-## 🔐 Seguridad del Token
+## Seguridad del Token
 
 ### Mejores Prácticas
 
@@ -179,11 +179,11 @@ GitHub ahora ofrece tokens más seguros:
 2. **Generate new token**
 3. **Repository access**: Solo el repo específico
 4. **Permissions**:
-   - Contents: Read and write
-   - Pull requests: Read and write
+ - Contents: Read and write
+ - Pull requests: Read and write
 5. Genera y usa este token
 
-## 🐛 Solución de Problemas
+## Solución de Problemas
 
 ### Error: "Token no tiene permisos"
 
@@ -203,7 +203,7 @@ GitHub ahora ofrece tokens más seguros:
 1. Verifica que el token tenga permisos de merge
 2. Aumenta el tiempo de espera en el script (línea con `time.sleep(5)`)
 
-## 📝 Personalización
+## Personalización
 
 ### Cambiar Nombre de Ramas
 
@@ -220,7 +220,7 @@ branch_name = f"daily-update-{timestamp}"
 Edita `pr_automator.py`, línea ~200:
 
 ```python
-"title": f"🤖 Automated Contribution - {datetime.now().strftime('%Y-%m-%d')}"
+"title": f" Automated Contribution - {datetime.now().strftime('%Y-%m-%d')}"
 # Cambia a:
 "title": f"chore: daily update {datetime.now().strftime('%Y-%m-%d')}"
 ```
@@ -235,7 +235,7 @@ Edita `pr_automator.py`, línea ~201:
 """
 ```
 
-## 📚 Siguiente Paso
+## Siguiente Paso
 
 - [Solución de Problemas](TROUBLESHOOTING.md)
 - [API y Scripts](API.md)

@@ -58,11 +58,11 @@ class GitCommitAutomator:
                 file_config = json.load(f)
                 config.update(file_config)
         except FileNotFoundError:
-            print(f"⚠️  Archivo de configuración no encontrado: {config_path}")
-            print("📝 Usando configuración por defecto y variables de entorno")
+            print(f"ADVERTENCIA: Archivo de configuración no encontrado: {config_path}")
+            print("INFO: Usando configuración por defecto y variables de entorno")
         except json.JSONDecodeError as e:
-            print(f"❌ Error al parsear el archivo de configuración: {e}")
-            print("📝 Usando configuración por defecto y variables de entorno")
+            print(f"ERROR: Error al parsear el archivo de configuración: {e}")
+            print("INFO: Usando configuración por defecto y variables de entorno")
         
         # Sobrescribir con variables de entorno (tienen prioridad)
         env_mappings = {
@@ -76,7 +76,7 @@ class GitCommitAutomator:
             env_value = os.getenv(env_var)
             if env_value:
                 config[config_key] = env_value
-                print(f"✅ Variable de entorno {env_var} cargada")
+                print(f"OK: Variable de entorno {env_var} cargada")
         
         return config
 
@@ -113,7 +113,7 @@ class GitCommitAutomator:
         git_user = self.config.get("git_user_name", "Commit Bot")
         git_email = self.config.get("git_user_email", "bot@example.com")
 
-        print(f"⚙️  Configurando Git (user: {git_user}, email: {git_email})")
+        print(f"CONFIG: Configurando Git (user: {git_user}, email: {git_email})")
 
         success_user, _ = self._run_command(["git", "config", "user.name", git_user])
         success_email, _ = self._run_command(["git", "config", "user.email", git_email])
@@ -128,15 +128,15 @@ class GitCommitAutomator:
             True si el repositorio está listo
         """
         if not self.repo_path.exists():
-            print(f"📁 Creando directorio: {self.repo_path}")
+            print(f"INFO: Creando directorio: {self.repo_path}")
             self.repo_path.mkdir(parents=True, exist_ok=True)
 
         git_dir = self.repo_path / ".git"
         if not git_dir.exists():
-            print("🔧 Inicializando repositorio Git")
+            print("INFO: Inicializando repositorio Git")
             success, output = self._run_command(["git", "init"])
             if not success:
-                print(f"❌ Error al inicializar Git: {output}")
+                print(f"ERROR: Error al inicializar Git: {output}")
                 return False
 
         return self.setup_git_config()
@@ -194,19 +194,19 @@ Este es un commit automático generado por el sistema de commits diarios.
             with open(self.data_file, 'w', encoding='utf-8') as f:
                 f.write(content)
         except IOError as e:
-            print(f"❌ Error al escribir archivo: {e}")
+            print(f"ERROR: Error al escribir archivo: {e}")
             return False
 
         # Git add
         success, output = self._run_command(["git", "add", "."])
         if not success:
-            print(f"❌ Error en git add: {output}")
+            print(f"ERROR: Error en git add: {output}")
             return False
 
         # Verificar si hay cambios
         success, output = self._run_command(["git", "status", "--porcelain"])
         if not success or not output.strip():
-            print("⚠️  No hay cambios para commitear")
+            print("ADVERTENCIA: No hay cambios para commitear")
             return False
 
         # Git commit
@@ -218,10 +218,10 @@ Este es un commit automático generado por el sistema de commits diarios.
 
         success, output = self._run_command(["git", "commit", "-m", commit_message])
         if not success:
-            print(f"❌ Error en git commit: {output}")
+            print(f"ERROR: Error en git commit: {output}")
             return False
 
-        print(f"✅ Commit #{commit_number} realizado exitosamente")
+        print(f"OK: Commit #{commit_number} realizado exitosamente")
         return True
 
     def push_commits(self) -> bool:
@@ -234,8 +234,8 @@ Este es un commit automático generado por el sistema de commits diarios.
         # Verificar si hay un remoto configurado
         success, output = self._run_command(["git", "remote", "-v"])
         if not success or not output.strip():
-            print("⚠️  No hay repositorio remoto configurado")
-            print("💡 Para agregar uno, ejecuta:")
+            print("ADVERTENCIA: No hay repositorio remoto configurado")
+            print("INFO: Para agregar uno, ejecuta:")
             print("   git remote add origin <URL_DEL_REPOSITORIO>")
             return False
 
@@ -247,22 +247,22 @@ Este es un commit automático generado por el sistema de commits diarios.
             branch = branch.strip()
 
         # Push
-        print(f"📤 Empujando commits a la rama '{branch}'...")
+        print(f"INFO: Empujando commits a la rama '{branch}'...")
         success, output = self._run_command(["git", "push", "origin", branch])
         
         if not success:
             # Intentar push con --set-upstream si es la primera vez
             if "no upstream branch" in output.lower() or "set-upstream" in output.lower():
-                print(f"🔄 Configurando upstream para la rama '{branch}'")
+                print(f"INFO: Configurando upstream para la rama '{branch}'")
                 success, output = self._run_command([
                     "git", "push", "--set-upstream", "origin", branch
                 ])
         
         if success:
-            print("✅ Push realizado exitosamente")
+            print("OK: Push realizado exitosamente")
             return True
         else:
-            print(f"❌ Error en git push: {output}")
+            print(f"ERROR: Error en git push: {output}")
             return False
 
     def run(self) -> bool:
@@ -273,22 +273,22 @@ Este es un commit automático generado por el sistema de commits diarios.
             True si todos los commits fueron exitosos
         """
         print("=" * 60)
-        print("🤖 Iniciando automatización de commits diarios")
+        print("INICIO: Automatización de commits diarios")
         print("=" * 60)
 
         # Inicializar repositorio
         if not self.init_repo():
-            print("❌ Error al inicializar el repositorio")
+            print("ERROR: Error al inicializar el repositorio")
             return False
 
         # Obtener número de commits a realizar
         commits_per_day = self.config.get("commits_per_day", 1)
-        print(f"📊 Commits a realizar: {commits_per_day}")
+        print(f"INFO: Commits a realizar: {commits_per_day}")
 
         # Realizar commits
         all_success = True
         for i in range(1, commits_per_day + 1):
-            print(f"\n🔄 Realizando commit {i}/{commits_per_day}...")
+            print(f"\nPROCESO: Realizando commit {i}/{commits_per_day}...")
             if not self.make_commit(i):
                 all_success = False
                 break
@@ -299,9 +299,9 @@ Este es un commit automático generado por el sistema de commits diarios.
 
         print("\n" + "=" * 60)
         if all_success:
-            print("✅ Proceso completado exitosamente")
+            print("OK: Proceso completado exitosamente")
         else:
-            print("⚠️  Proceso completado con algunos errores")
+            print("ADVERTENCIA: Proceso completado con algunos errores")
         print("=" * 60)
 
         return all_success
@@ -314,7 +314,7 @@ def main():
         success = automator.run()
         sys.exit(0 if success else 1)
     except Exception as e:
-        print(f"❌ Error inesperado: {e}")
+        print(f"ERROR: Error inesperado: {e}")
         import traceback
         traceback.print_exc()
         sys.exit(1)

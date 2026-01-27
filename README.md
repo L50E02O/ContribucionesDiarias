@@ -1,4 +1,4 @@
-# 🤖 Sistema de Commits Diarios Automáticos para GitHub
+# Sistema de Commits Diarios Automáticos para GitHub
 
 <div align="center">
 
@@ -7,7 +7,7 @@
 ![Railway](https://img.shields.io/badge/deploy-railway-blueviolet.svg)
 ![n8n](https://img.shields.io/badge/automation-n8n-orange.svg)
 
-**Mantén tu racha de contribuciones en GitHub automáticamente** 🔥
+**Mantén tu racha de contribuciones en GitHub automáticamente** 
 
 [Inicio Rápido](docs/QUICK_START.md) • [Documentación](docs/) • [Licencia](#-licencia)
 
@@ -15,22 +15,22 @@
 
 ---
 
-## 📖 Descripción
+## Descripción
 
 Sistema automatizado que genera commits diarios en GitHub para mantener una racha constante de contribuciones. Funciona 24/7 en Railway (gratis) usando n8n para la automatización y Python para los scripts.
 
-### ✨ Características Principales
+### Características Principales
 
-- ✅ **Completamente Gratis** - Funciona en el plan gratuito de Railway ($5 crédito/mes)
-- ✅ **Automático 24/7** - Sin necesidad de tu computadora encendida
-- ✅ **Flexible** - Configura número de commits, horarios y mensajes
-- ✅ **Dos Modos** - Commits directos o Pull Requests automáticos
-- ✅ **Fácil Setup** - Configuración en menos de 10 minutos
-- ✅ **Código Abierto** - Totalmente transparente y personalizable
+- **Completamente Gratis** - Funciona en el plan gratuito de Railway ($5 crédito/mes)
+- **Automático 24/7** - Sin necesidad de tu computadora encendida
+- **Flexible** - Configura número de commits, horarios y mensajes
+- **Dos Modos** - Commits directos o Pull Requests automáticos
+- **Fácil Setup** - Configuración en menos de 10 minutos
+- **Código Abierto** - Totalmente transparente y personalizable
 
 ---
 
-## 🚀 Inicio Rápido
+## Inicio Rápido
 
 ### Requisitos Previos
 
@@ -66,7 +66,7 @@ git push -u origin main
 
 ---
 
-## 📚 Documentación
+## Documentación
 
 ### Guías Principales
 
@@ -86,18 +86,18 @@ git push -u origin main
 
 ---
 
-## ⚙️ Configuración Básica
+## Configuración Básica
 
 ### Archivo `config/config.json`
 
 ```json
 {
-  "commits_per_day": 1,
-  "commit_message_template": "Commit automático del {date} #{number}",
-  "git_user_name": "Tu Nombre",
-  "git_user_email": "tu-email@ejemplo.com",
-  "auto_push": true,
-  "timezone": "America/Bogota"
+ "commits_per_day": 1,
+ "commit_message_template": "Commit automático del {date} #{number}",
+ "git_user_name": "Tu Nombre",
+ "git_user_email": "tu-email@ejemplo.com",
+ "auto_push": true,
+ "timezone": "America/Bogota"
 }
 ```
 
@@ -115,7 +115,7 @@ GIT_USER_EMAIL=tu-email@ejemplo.com
 
 ---
 
-## 🔄 Modos de Operación
+## Modos de Operación
 
 ### Modo 1: Commits Directos (Por Defecto)
 
@@ -137,35 +137,35 @@ Crea ramas, PRs y los mergea automáticamente.
 
 ---
 
-## 📊 Estructura del Proyecto
+## Estructura del Proyecto
 
 ```
 commitDiario/
-├── 📄 README.md                 # Este archivo
-├── 📄 LICENSE                   # Licencia MIT
-├── 🐳 Dockerfile                # Configuración de Docker
-├── ⚙️  railway.json              # Configuración de Railway
-├── 📁 config/                   # Configuración
-│   └── config.json             # Archivo de configuración principal
-├── 📁 scripts/                  # Scripts de Python
-│   ├── commit_automator.py     # Script de commits directos
-│   ├── pr_automator.py         # Script de Pull Requests
-│   └── requirements.txt        # Dependencias de Python
-├── 📁 docs/                     # Documentación completa
-│   ├── README.md               # Índice de documentación
-│   ├── QUICK_START.md          # Guía de inicio rápido
-│   ├── RAILWAY_DEPLOY.md       # Guía de despliegue
-│   ├── CONFIGURATION.md        # Configuración avanzada
-│   ├── PR_MODE.md              # Modo Pull Request
-│   └── TROUBLESHOOTING.md      # Solución de problemas
-└── 📁 workflows/                # Workflows de n8n
-    ├── n8n-workflow.json       # Workflow de commits directos
-    └── n8n-workflow-pr.json    # Workflow de Pull Requests
+ README.md # Este archivo
+ LICENSE # Licencia MIT
+ Dockerfile # Configuración de Docker
+ railway.json # Configuración de Railway
+ config/ # Configuración
+ config.json # Archivo de configuración principal
+ scripts/ # Scripts de Python
+ commit_automator.py # Script de commits directos
+ pr_automator.py # Script de Pull Requests
+ requirements.txt # Dependencias de Python
+ docs/ # Documentación completa
+ README.md # Índice de documentación
+ QUICK_START.md # Guía de inicio rápido
+ RAILWAY_DEPLOY.md # Guía de despliegue
+ CONFIGURATION.md # Configuración avanzada
+ PR_MODE.md # Modo Pull Request
+ TROUBLESHOOTING.md # Solución de problemas
+ workflows/ # Workflows de n8n
+ n8n-workflow.json # Workflow de commits directos
+ n8n-workflow-pr.json # Workflow de Pull Requests
 ```
 
 ---
 
-## 🛠️ Tecnologías Utilizadas
+## Tecnologías Utilizadas
 
 - **[n8n](https://n8n.io/)** - Automatización de workflows
 - **[Python 3](https://www.python.org/)** - Scripts de automatización
@@ -175,16 +175,16 @@ commitDiario/
 
 ---
 
-## 🎯 Casos de Uso
+## Casos de Uso
 
-### ✅ Ideal Para:
+### Ideal Para:
 
 - Mantener racha de contribuciones durante vacaciones
 - Proyectos personales de aprendizaje
 - Demostrar actividad constante en tu perfil
 - Automatizar tareas repetitivas de Git
 
-### ⚠️ No Recomendado Para:
+### No Recomendado Para:
 
 - Proyectos profesionales o de equipo
 - Repositorios públicos importantes
@@ -193,29 +193,29 @@ commitDiario/
 
 ---
 
-## 🔐 Seguridad y Privacidad
+## Seguridad y Privacidad
 
-- ✅ **Código abierto** - Todo el código es visible y auditable
-- ✅ **Sin acceso a datos** - Solo interactúa con tu repositorio específico
-- ✅ **Tokens seguros** - Usa variables de entorno, nunca en el código
-- ✅ **Repositorios privados** - Funciona perfectamente con repos privados
-- ✅ **Control total** - Tú controlas qué, cuándo y dónde
+- **Código abierto** - Todo el código es visible y auditable
+- **Sin acceso a datos** - Solo interactúa con tu repositorio específico
+- **Tokens seguros** - Usa variables de entorno, nunca en el código
+- **Repositorios privados** - Funciona perfectamente con repos privados
+- **Control total** - Tú controlas qué, cuándo y dónde
 
 ---
 
-## 💰 Costos
+## Costos
 
 ### Railway (Recomendado)
 
 - **Plan Gratuito**: $5 crédito/mes
 - **Uso real**: ~$1-2/mes
-- **Resultado**: ✅ **Completamente gratis**
+- **Resultado**: **Completamente gratis**
 
 El plan gratuito de Railway es más que suficiente para este proyecto.
 
 ---
 
-## 🤝 Contribuciones
+## Contribuciones
 
 ¡Las contribuciones son bienvenidas! Si tienes ideas para mejorar este sistema:
 
@@ -235,7 +235,7 @@ El plan gratuito de Railway es más que suficiente para este proyecto.
 
 ---
 
-## 📄 Licencia
+## Licencia
 
 Este proyecto está bajo la Licencia MIT. Ver [LICENSE](LICENSE) para más detalles.
 
@@ -244,17 +244,17 @@ MIT License - Copyright (c) 2026
 ```
 
 Esto significa que puedes:
-- ✅ Usar comercialmente
-- ✅ Modificar
-- ✅ Distribuir
-- ✅ Uso privado
+- Usar comercialmente
+- Modificar
+- Distribuir
+- Uso privado
 
 Con la condición de:
-- ℹ️ Incluir la licencia y copyright
+- ℹ Incluir la licencia y copyright
 
 ---
 
-## ⚠️ Disclaimer
+## Disclaimer
 
 Este proyecto es para fines educativos y personales. Úsalo de manera responsable y ética. No está diseñado para engañar a empleadores o inflar artificialmente estadísticas de contribuciones de manera deshonesta.
 
@@ -262,7 +262,7 @@ Las contribuciones generadas son reales y están en tu repositorio, pero conside
 
 ---
 
-## 📞 Soporte
+## Soporte
 
 ### ¿Necesitas ayuda?
 
@@ -278,7 +278,7 @@ Las contribuciones generadas son reales y están en tu repositorio, pero conside
 
 ---
 
-## 🌟 Agradecimientos
+## Agradecimientos
 
 - [n8n.io](https://n8n.io/) por la increíble plataforma de automatización
 - [Railway](https://railway.app/) por el hosting gratuito
@@ -286,7 +286,7 @@ Las contribuciones generadas son reales y están en tu repositorio, pero conside
 
 ---
 
-## 📈 Roadmap
+## Roadmap
 
 - [x] Sistema de commits directos
 - [x] Sistema de Pull Requests automáticos
@@ -301,9 +301,9 @@ Las contribuciones generadas son reales y están en tu repositorio, pero conside
 
 <div align="center">
 
-**¿Te resultó útil este proyecto? Dale una ⭐ en GitHub!**
+**¿Te resultó útil este proyecto? Dale una en GitHub!**
 
-Hecho con ❤️ para mantener vivas las rachas de GitHub
+Hecho con para mantener vivas las rachas de GitHub
 
 [Documentación](docs/) • [Licencia](LICENSE) • [Contribuir](#-contribuciones)
 

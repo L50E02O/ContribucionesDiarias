@@ -1,31 +1,30 @@
-# ⚙️ Configuración Avanzada
+# Configuración Avanzada
 
 Guía completa de personalización del sistema.
 
-## 📄 Archivo config.json
+## Archivo config.json
 
 Ubicación: `/config/config.json`
 
 ```json
 {
-  "commits_per_day": 1,
-  "repo_path": "/repo",
-  "commit_message_template": "Commit automático del {date} #{number}",
-  "git_user_name": "Commit Bot",
-  "git_user_email": "bot@commitdiario.com",
-  "auto_push": true,
-  "timezone": "America/Bogota",
-  
-  "use_pr_workflow": false,
-  "github_token": "",
-  "github_repo_owner": "",
-  "github_repo_name": "",
-  "merge_method": "squash",
-  "auto_cleanup_branch": true
+ "commits_per_day": 1,
+ "repo_path": "/repo",
+ "commit_message_template": "Commit automático del {date} #{number}",
+ "git_user_name": "Commit Bot",
+ "git_user_email": "bot@commitdiario.com",
+ "auto_push": true,
+ "timezone": "America/Bogota",
+ "use_pr_workflow": false,
+ "github_token": "",
+ "github_repo_owner": "",
+ "github_repo_name": "",
+ "merge_method": "squash",
+ "auto_cleanup_branch": true
 }
 ```
 
-## 🔧 Parámetros de Configuración
+## Parámetros de Configuración
 
 ### Commits Básicos
 
@@ -39,14 +38,14 @@ Ubicación: `/config/config.json`
 - **Tipo**: String
 - **Default**: `"Commit automático del {date} #{number}"`
 - **Variables disponibles**:
-  - `{date}`: Fecha actual (YYYY-MM-DD)
-  - `{number}`: Número del commit del día
+ - `{date}`: Fecha actual (YYYY-MM-DD)
+ - `{number}`: Número del commit del día
 - **Ejemplos**:
-  ```json
-  "Daily update {date}"
-  "🎯 Automated commit #{number} on {date}"
-  "chore: daily maintenance"
-  ```
+ ```json
+ "Daily update {date}"
+ " Automated commit #{number} on {date}"
+ "chore: daily maintenance"
+ ```
 
 #### `auto_push`
 - **Tipo**: Boolean
@@ -74,17 +73,17 @@ Ubicación: `/config/config.json`
 - **Default**: `"America/Bogota"`
 - **Descripción**: Zona horaria para los timestamps
 - **Ejemplos**:
-  - `"America/New_York"` (UTC-5/UTC-4)
-  - `"America/Mexico_City"` (UTC-6)
-  - `"Europe/Madrid"` (UTC+1/UTC+2)
-  - `"Asia/Tokyo"` (UTC+9)
+ - `"America/New_York"` (UTC-5/UTC-4)
+ - `"America/Mexico_City"` (UTC-6)
+ - `"Europe/Madrid"` (UTC+1/UTC+2)
+ - `"Asia/Tokyo"` (UTC+9)
 - **Lista completa**: [TZ Database](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones)
 
 ### Modo Pull Request
 
 Ver [PR_MODE.md](PR_MODE.md) para configuración completa.
 
-## 🕐 Configuración del Horario
+## Configuración del Horario
 
 El horario se configura en el workflow de n8n:
 
@@ -116,7 +115,7 @@ Para hora específica:
 
 **Nota**: n8n usa UTC internamente. Ajusta según tu zona horaria.
 
-## 🔐 Variables de Entorno en Railway
+## Variables de Entorno en Railway
 
 Variables obligatorias:
 
@@ -145,13 +144,13 @@ Variables opcionales (solo para modo PR):
 GITHUB_TOKEN=ghp_tu_token_aqui
 ```
 
-## 📝 Personalización de Mensajes
+## Personalización de Mensajes
 
 ### Mensajes Simples
 
 ```json
 {
-  "commit_message_template": "Daily update"
+ "commit_message_template": "Daily update"
 }
 ```
 
@@ -159,7 +158,7 @@ GITHUB_TOKEN=ghp_tu_token_aqui
 
 ```json
 {
-  "commit_message_template": "Update {date}"
+ "commit_message_template": "Update {date}"
 }
 ```
 
@@ -167,7 +166,7 @@ GITHUB_TOKEN=ghp_tu_token_aqui
 
 ```json
 {
-  "commit_message_template": "🚀 Daily commit {date}"
+ "commit_message_template": " Daily commit {date}"
 }
 ```
 
@@ -175,11 +174,11 @@ GITHUB_TOKEN=ghp_tu_token_aqui
 
 ```json
 {
-  "commit_message_template": "chore: automated daily update {date}"
+ "commit_message_template": "chore: automated daily update {date}"
 }
 ```
 
-## 🔄 Cambiar Configuración en Producción
+## Cambiar Configuración en Producción
 
 ### Método 1: Editar en Railway
 
@@ -193,7 +192,7 @@ railway run bash
 
 # Editar config
 cd /config
-vi config.json  # o nano config.json
+vi config.json # o nano config.json
 
 # Reiniciar n8n (Railway lo hace automáticamente)
 ```
@@ -202,23 +201,23 @@ vi config.json  # o nano config.json
 
 1. Edita `config/config.json` localmente
 2. Commit y push:
-   ```bash
-   git add config/config.json
-   git commit -m "Update configuration"
-   git push
-   ```
+ ```bash
+ git add config/config.json
+ git commit -m "Update configuration"
+ git push
+ ```
 3. Railway redespleará automáticamente
 
-## 🎨 Ejemplos de Configuración
+## Ejemplos de Configuración
 
 ### Configuración Minimalista
 
 ```json
 {
-  "commits_per_day": 1,
-  "commit_message_template": "update",
-  "git_user_name": "Bot",
-  "git_user_email": "bot@example.com"
+ "commits_per_day": 1,
+ "commit_message_template": "update",
+ "git_user_name": "Bot",
+ "git_user_email": "bot@example.com"
 }
 ```
 
@@ -226,22 +225,22 @@ vi config.json  # o nano config.json
 
 ```json
 {
-  "commits_per_day": 3,
-  "commit_message_template": "🎯 Automated commit #{number} on {date}",
-  "git_user_name": "Juan Pérez",
-  "git_user_email": "juan@ejemplo.com",
-  "auto_push": true,
-  "timezone": "America/Mexico_City",
-  "use_pr_workflow": true,
-  "github_token": "ghp_token_here",
-  "github_repo_owner": "juanperez",
-  "github_repo_name": "daily-commits",
-  "merge_method": "squash",
-  "auto_cleanup_branch": true
+ "commits_per_day": 3,
+ "commit_message_template": " Automated commit #{number} on {date}",
+ "git_user_name": "Juan Pérez",
+ "git_user_email": "juan@ejemplo.com",
+ "auto_push": true,
+ "timezone": "America/Mexico_City",
+ "use_pr_workflow": true,
+ "github_token": "ghp_token_here",
+ "github_repo_owner": "juanperez",
+ "github_repo_name": "daily-commits",
+ "merge_method": "squash",
+ "auto_cleanup_branch": true
 }
 ```
 
-## 🔍 Verificar Configuración
+## Verificar Configuración
 
 ```bash
 # Ver configuración actual
@@ -252,7 +251,7 @@ railway run env | grep N8N
 railway run env | grep GIT
 ```
 
-## 📚 Siguiente Paso
+## Siguiente Paso
 
 - [Modo Pull Request](PR_MODE.md)
 - [Solución de Problemas](TROUBLESHOOTING.md)

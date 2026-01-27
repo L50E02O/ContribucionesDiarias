@@ -1,19 +1,19 @@
-# 🚀 Guía de Despliegue en Railway
+# Guía de Despliegue en Railway
 
 Esta guía te muestra cómo desplegar el sistema de commits diarios en Railway para que esté siempre disponible 24/7.
 
-## 🚂 ¿Por qué Railway?
+## ¿Por qué Railway?
 
 Railway es la **mejor opción para este proyecto** porque:
 
-- ✅ **Plan gratuito funcional**: $5 crédito/mes (suficiente para este proyecto)
-- ✅ **Sin sleep automático**: Tu servicio permanece activo 24/7
-- ✅ **Cron jobs funcionan**: Los workflows de n8n se ejecutan correctamente
-- ✅ **Setup en 5 minutos**: La configuración más simple
-- ✅ **Interfaz moderna**: Fácil de usar y monitorear
-- ✅ **Despliegue automático**: Desde GitHub con un click
+- **Plan gratuito funcional**: $5 crédito/mes (suficiente para este proyecto)
+- **Sin sleep automático**: Tu servicio permanece activo 24/7
+- **Cron jobs funcionan**: Los workflows de n8n se ejecutan correctamente
+- **Setup en 5 minutos**: La configuración más simple
+- **Interfaz moderna**: Fácil de usar y monitorear
+- **Despliegue automático**: Desde GitHub con un click
 
-## ⚠️ Nota sobre Otras Plataformas
+## Nota sobre Otras Plataformas
 
 **Vercel NO funciona** - No soporta contenedores de larga ejecución ni cron jobs persistentes.
 
@@ -21,20 +21,20 @@ Railway es la **mejor opción para este proyecto** porque:
 
 ---
 
-## 🚀 Despliegue en Railway
+## Despliegue en Railway
 
-### 📋 Requisitos Previos
+### Requisitos Previos
 
 Antes de comenzar, asegúrate de tener:
 
-- ✅ Cuenta de GitHub
-- ✅ Cuenta en Railway (puedes registrarte con GitHub)
-- ✅ Token de GitHub con permisos `repo`
-- ✅ Tu proyecto listo en tu máquina
+- Cuenta de GitHub
+- Cuenta en Railway (puedes registrarte con GitHub)
+- Token de GitHub con permisos `repo`
+- Tu proyecto listo en tu máquina
 
 ---
 
-## 🎯 Guía Paso a Paso
+## Guía Paso a Paso
 
 ### Paso 1: Crear Cuenta en Railway
 
@@ -81,7 +81,7 @@ git push -u origin main
 2. Selecciona **"Deploy from GitHub repo"**
 3. Autoriza Railway a acceder a tu repositorio (si es la primera vez)
 4. Selecciona el repositorio que acabas de crear
-5. Railway detectará automáticamente el `Dockerfile` ✅
+5. Railway detectará automáticamente el `Dockerfile` 
 
 **Railway comenzará a desplegar automáticamente**, pero primero necesitamos configurar las variables de entorno.
 
@@ -121,7 +121,7 @@ GIT_USER_EMAIL=tu-email@ejemplo.com
 GITHUB_TOKEN=ghp_tu_token_github_con_permisos_repo
 ```
 
-**💡 Consejo:** Para generar `N8N_ENCRYPTION_KEY`, usa cualquier texto largo y aleatorio (mínimo 32 caracteres).
+** Consejo:** Para generar `N8N_ENCRYPTION_KEY`, usa cualquier texto largo y aleatorio (mínimo 32 caracteres).
 
 ---
 
@@ -133,8 +133,8 @@ Para mantener tus workflows de n8n guardados:
 2. Scroll hasta **"Volumes"**
 3. Click en **"Add Volume"**
 4. Configuración:
-   - **Mount Path**: `/home/node/.n8n`
-   - **Size**: 1 GB (suficiente)
+ - **Mount Path**: `/home/node/.n8n`
+ - **Size**: 1 GB (suficiente)
 5. Click **"Add"**
 
 Railway reiniciará el servicio para montar el volumen.
@@ -145,9 +145,9 @@ Railway reiniciará el servicio para montar el volumen.
 
 1. Ve a la pestaña **"Settings"** de tu servicio
 2. En la sección **"Domains"**, verás algo como:
-   ```
-   https://commit-automation-production-xxxx.up.railway.app
-   ```
+ ```
+ https://commit-automation-production-xxxx.up.railway.app
+ ```
 3. **Copia esta URL** - la necesitarás para acceder a n8n
 
 ---
@@ -158,8 +158,8 @@ Railway reiniciará el servicio para montar el volumen.
 2. Espera 1-2 minutos si es la primera vez (está iniciando)
 3. Verás la pantalla de login de n8n
 4. Login con:
-   - **Usuario**: `admin` (o el que configuraste)
-   - **Password**: La que pusiste en `N8N_BASIC_AUTH_PASSWORD`
+ - **Usuario**: `admin` (o el que configuraste)
+ - **Password**: La que pusiste en `N8N_BASIC_AUTH_PASSWORD`
 
 ---
 
@@ -168,10 +168,10 @@ Railway reiniciará el servicio para montar el volumen.
 1. En n8n, ve a **"Workflows"** (menú lateral)
 2. Click en **"Import from File"**
 3. Selecciona el archivo:
-   - `n8n-workflow.json` (para commits directos)
-   - `n8n-workflow-pr.json` (para PRs automáticos)
+ - `n8n-workflow.json` (para commits directos)
+ - `n8n-workflow-pr.json` (para PRs automáticos)
 4. El workflow aparecerá en tu lista
-5. Ábrelo y **activa el workflow** (toggle en la esquina superior derecha debe estar verde ✅)
+5. Ábrelo y **activa el workflow** (toggle en la esquina superior derecha debe estar verde )
 
 ---
 
@@ -238,24 +238,24 @@ python3 /scripts/pr_automator.py
 3. Deberías ver:
 ```
 ============================================================
-🤖 Iniciando automatización de commits diarios
+ Iniciando automatización de commits diarios
 ============================================================
-⚙️  Configurando Git...
-📊 Commits a realizar: 1
-🔄 Realizando commit 1/1...
-✅ Commit #1 realizado exitosamente
-📤 Empujando commits a la rama 'main'...
-✅ Push realizado exitosamente
+ Configurando Git...
+ Commits a realizar: 1
+ Realizando commit 1/1...
+ Commit #1 realizado exitosamente
+ Empujando commits a la rama 'main'...
+ Push realizado exitosamente
 ============================================================
-✅ Proceso completado exitosamente
+ Proceso completado exitosamente
 ============================================================
 ```
 
-4. Verifica en GitHub que el commit apareció ✅
+4. Verifica en GitHub que el commit apareció 
 
 ---
 
-## ✅ Verificación Final
+## Verificación Final
 
 ### Checklist de que Todo Funciona:
 
@@ -268,131 +268,128 @@ python3 /scripts/pr_automator.py
 - [ ] La prueba manual del script funcionó
 - [ ] El commit apareció en GitHub
 
-Si todo está ✅, ¡tu sistema está listo!
+Si todo está , ¡tu sistema está listo!
 
 ---
 
-## 🔧 Configuración Post-Despliegue
+## Configuración Post-Despliegue
 
 ### Configurar el Workflow:
 
 1. **Ajustar hora de ejecución**
-   - En n8n, abre tu workflow
-   - Click en el nodo **"Schedule Trigger"**
-   - Opciones:
-     - **Intervalo**: Cada 24 horas (simple)
-     - **Cron Expression**: Para hora específica
-   
-   **Ejemplos de Cron (ya configurado para UTC-5 / America/Bogota):**
-   ```
-   # Diario a las 9:00 AM (Colombia)
-   0 14 * * *
-   
-   # Diario a las 6:00 PM (Colombia)  
-   0 23 * * *
-   
-   # Diario a la medianoche (Colombia)
-   0 5 * * *
-   ```
+ - En n8n, abre tu workflow
+ - Click en el nodo **"Schedule Trigger"**
+ - Opciones:
+ - **Intervalo**: Cada 24 horas (simple)
+ - **Cron Expression**: Para hora específica
+ **Ejemplos de Cron (ya configurado para UTC-5 / America/Bogota):**
+ ```
+ # Diario a las 9:00 AM (Colombia)
+ 0 14 * * *
+ # Diario a las 6:00 PM (Colombia) 
+ 0 23 * * *
+ # Diario a la medianoche (Colombia)
+ 0 5 * * *
+ ```
 
 2. **Configurar número de commits**
-   - Edita `/config/config.json` desde Railway Shell:
-   ```json
-   {
-     "commits_per_day": 3,  // Cambia esto
-     ...
-   }
-   ```
+ - Edita `/config/config.json` desde Railway Shell:
+ ```json
+ {
+ "commits_per_day": 3, // Cambia esto
+ ...
+ }
+ ```
 
 3. **Guardar cambios**
-   - Click **"Save"** en n8n
-   - Los cambios se aplicarán en la próxima ejecución
+ - Click **"Save"** en n8n
+ - Los cambios se aplicarán en la próxima ejecución
 
 ---
 
-## 🔄 Modo Pull Request vs Commits Directos
+## Modo Pull Request vs Commits Directos
 
 ### Para Activar Modo Pull Request:
 
 1. **Actualiza variables en Railway:**
-   - Railway → Variables → Add Variable:
-   ```bash
-   GITHUB_TOKEN=ghp_tu_token_con_permisos_repo
-   ```
+ - Railway → Variables → Add Variable:
+ ```bash
+ GITHUB_TOKEN=ghp_tu_token_con_permisos_repo
+ ```
 
 2. **Actualiza `config/config.json`** (vía Railway Shell):
-   ```json
-   {
-     "use_pr_workflow": true,
-     "github_token": "ghp_tu_token_aqui",
-     "github_repo_owner": "tu_usuario",
-     "github_repo_name": "nombre_repo",
-     "merge_method": "squash",
-     "auto_cleanup_branch": true
-   }
-   ```
+ ```json
+ {
+ "use_pr_workflow": true,
+ "github_token": "ghp_tu_token_aqui",
+ "github_repo_owner": "tu_usuario",
+ "github_repo_name": "nombre_repo",
+ "merge_method": "squash",
+ "auto_cleanup_branch": true
+ }
+ ```
 
 3. **Crea token de GitHub con permisos completos:**
-   - GitHub → Settings → Developer settings → Personal access tokens
-   - Generate new token (classic)
-   - Scope: `repo` (acceso completo a repositorios)
-   - Copia el token
+ - GitHub → Settings → Developer settings → Personal access tokens
+ - Generate new token (classic)
+ - Scope: `repo` (acceso completo a repositorios)
+ - Copia el token
 
 4. **Importa el workflow de PRs en n8n:**
-   - Importa `n8n-workflow-pr.json` 
-   - Activa el workflow
+ - Importa `n8n-workflow-pr.json` 
+ - Activa el workflow
 
 5. **Prueba desde Railway:**
-   ```bash
-   railway run python3 /scripts/pr_automator.py
-   ```
+ ```bash
+ railway run python3 /scripts/pr_automator.py
+ ```
 
 ---
 
-## 🔐 Seguridad en Railway
+## Seguridad en Railway
 
 ### Mejores Prácticas:
 
 1. **Contraseñas fuertes:**
-   ```bash
-   N8N_BASIC_AUTH_PASSWORD=UsaContraseñaSegura123!@#
-   ```
-   - Mínimo 12 caracteres
-   - Usa generadores de contraseñas
+ ```bash
+ N8N_BASIC_AUTH_PASSWORD=UsaContraseñaSegura123!@#
+ ```
+ - Mínimo 12 caracteres
+ - Usa generadores de contraseñas
 
 2. **Encryption Key segura:**
-   ```bash
-   # Generar clave aleatoria
-   N8N_ENCRYPTION_KEY=abc123xyz789MuyLargaYAleatoria456def
-   ```
-   - Mínimo 32 caracteres aleatorios
+ ```bash
+ # Generar clave aleatoria
+ N8N_ENCRYPTION_KEY=abc123xyz789MuyLargaYAleatoria456def
+ ```
+ - Mínimo 32 caracteres aleatorios
 
 3. **Tokens de GitHub:**
-   - Nunca compartas tu token
-   - Usa tokens con permisos mínimos necesarios
-   - Rota tokens periódicamente (cada 3-6 meses)
-   - Considera usar Fine-grained tokens
+ - Nunca compartas tu token
+ - Usa tokens con permisos mínimos necesarios
+ - Rota tokens periódicamente (cada 3-6 meses)
+ - Considera usar Fine-grained tokens
 
 4. **Repositorio privado:**
-   - Usa repositorios privados para mayor privacidad
-   - Las contribuciones privadas también cuentan en tu perfil
-   - Railway accede vía token, no expone credenciales
+ - Usa repositorios privados para mayor privacidad
+ - Las contribuciones privadas también cuentan en tu perfil
+ - Railway accede vía token, no expone credenciales
 
 5. **Variables de entorno:**
-   - Todas las credenciales están en Variables de Railway
-   - No están en el código
-   - Railway las encripta automáticamente
+ - Todas las credenciales están en Variables de Railway
+ - No están en el código
+ - Railway las encripta automáticamente
 
 ---
 
-## 💰 Costos de Railway
+## Costos de Railway
 
 ### Plan Gratuito:
 
 - **Crédito mensual**: $5 USD
 - **Renovación**: Automática cada mes
 - **Consumo estimado**: $1-2/mes para este proyecto
-- **Conclusión**: ✅ **Completamente gratis** para este uso
+- **Conclusión**: **Completamente gratis** para este uso
 
 ### Uso Real Estimado:
 
@@ -405,7 +402,7 @@ Servicio n8n corriendo 24/7:
 
 Costo real: ~$1.50/mes
 Crédito gratis: $5/mes
-Resultado: ✅ GRATIS con margen sobrado
+Resultado: GRATIS con margen sobrado
 ```
 
 ### Si Superas los $5:
@@ -422,7 +419,7 @@ Railway → Project → Usage
 
 ---
 
-## 🐛 Solución de Problemas en Railway
+## Solución de Problemas en Railway
 
 ### El servicio no inicia:
 
@@ -463,10 +460,10 @@ Railway → Project → Usage
 2. Verifica la URL en Settings → Domains
 3. Espera 1-2 minutos si acabas de desplegar
 4. Verifica las credenciales:
-   ```bash
-   Usuario: admin
-   Password: (el de N8N_BASIC_AUTH_PASSWORD)
-   ```
+ ```bash
+ Usuario: admin
+ Password: (el de N8N_BASIC_AUTH_PASSWORD)
+ ```
 
 ### El repositorio Git no está configurado:
 
@@ -498,7 +495,7 @@ chmod +x /scripts/*.py /scripts/*.sh
 
 ---
 
-## 📈 Monitoreo en Railway
+## Monitoreo en Railway
 
 ### Ver Logs en Tiempo Real:
 
@@ -510,10 +507,10 @@ chmod +x /scripts/*.py /scripts/*.sh
 
 1. Railway → Project → **"Usage"**
 2. Monitorea:
-   - CPU usage
-   - Memory usage
-   - Network egress
-   - Costo acumulado del mes
+ - CPU usage
+ - Memory usage
+ - Network egress
+ - Costo acumulado del mes
 
 ### Alertas:
 
@@ -546,18 +543,18 @@ railway up
 
 ---
 
-## 🎉 ¡Sistema Desplegado!
+## ¡Sistema Desplegado!
 
 Tu sistema de commits diarios está ahora corriendo 24/7 en Railway.
 
-### ✅ Qué Esperar:
+### Qué Esperar:
 
 - **Hoy**: Sistema configurado y corriendo
 - **Mañana**: Primer commit automático aparecerá en GitHub
 - **Diario**: Commits automáticos a la hora configurada
-- **Tu perfil**: Racha de contribuciones constante 🔥
+- **Tu perfil**: Racha de contribuciones constante 
 
-### 📊 Verificación Diaria:
+### Verificación Diaria:
 
 1. Revisa tu perfil de GitHub
 2. Verifica los commits en el repositorio
@@ -565,7 +562,7 @@ Tu sistema de commits diarios está ahora corriendo 24/7 en Railway.
 
 ---
 
-## 🚀 Próximos Pasos
+## Próximos Pasos
 
 ### Personalizar el Sistema:
 
@@ -582,7 +579,7 @@ Tu sistema de commits diarios está ahora corriendo 24/7 en Railway.
 
 ---
 
-## 📚 Recursos Útiles
+## Recursos Útiles
 
 - [Railway Documentation](https://docs.railway.app/)
 - [Railway CLI Guide](https://docs.railway.app/develop/cli)
@@ -592,7 +589,7 @@ Tu sistema de commits diarios está ahora corriendo 24/7 en Railway.
 
 ---
 
-## 💬 Soporte
+## Soporte
 
 Si tienes problemas:
 
@@ -603,10 +600,10 @@ Si tienes problemas:
 
 ---
 
-## 🎊 ¡Felicitaciones!
+## ¡Felicitaciones!
 
 Has desplegado exitosamente un sistema de automatización completo en la nube. Ahora tu perfil de GitHub mantendrá una racha de contribuciones constante sin esfuerzo manual.
 
 **Recuerda**: Usa este sistema de manera responsable y ética. 
 
-**¡Disfruta tu racha de commits! 🔥**
+**¡Disfruta tu racha de commits! **

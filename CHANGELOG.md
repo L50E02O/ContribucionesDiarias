@@ -1,4 +1,4 @@
-# 📝 Changelog
+# Changelog
 
 Todos los cambios notables en este proyecto serán documentados en este archivo.
 
@@ -7,7 +7,7 @@ y este proyecto adhiere a [Semantic Versioning](https://semver.org/lang/es/).
 
 ## [1.0.0] - 2026-01-26
 
-### ✨ Agregado
+### Agregado
 
 - Sistema completo de commits diarios automáticos
 - Script de Python para commits directos (`commit_automator.py`)
@@ -17,18 +17,18 @@ y este proyecto adhiere a [Semantic Versioning](https://semver.org/lang/es/).
 - Dockerfile optimizado para Railway
 - Configuración de Railway (`railway.json`)
 - Documentación completa en carpeta `docs/`:
-  - Guía de inicio rápido
-  - Guía de despliegue en Railway
-  - Configuración avanzada
-  - Modo Pull Request
-  - Solución de problemas
+ - Guía de inicio rápido
+ - Guía de despliegue en Railway
+ - Configuración avanzada
+ - Modo Pull Request
+ - Solución de problemas
 - Archivo de configuración flexible (`config/config.json`)
 - Variables de entorno de ejemplo (`.env.example`)
 - Licencia MIT
 - Guía de contribución
 - README principal con badges y estructura completa
 
-### 🔧 Configuración
+### Configuración
 
 - Soporte para zona horaria configurable
 - Número de commits por día personalizable
@@ -37,7 +37,7 @@ y este proyecto adhiere a [Semantic Versioning](https://semver.org/lang/es/).
 - Auto-push configurable
 - Métodos de merge configurables (squash, merge, rebase)
 
-### 🚀 Despliegue
+### Despliegue
 
 - Soporte completo para Railway
 - Dockerfile basado en Node.js Alpine
@@ -45,7 +45,7 @@ y este proyecto adhiere a [Semantic Versioning](https://semver.org/lang/es/).
 - Instalación de Git y Python en el contenedor
 - Volúmenes persistentes para datos de n8n
 
-### 📚 Documentación
+### Documentación
 
 - 8 documentos completos en `docs/`
 - README principal con guía completa
@@ -53,7 +53,7 @@ y este proyecto adhiere a [Semantic Versioning](https://semver.org/lang/es/).
 - Solución de problemas detallada
 - Guía de contribución
 
-### 🔐 Seguridad
+### Seguridad
 
 - Variables de entorno para información sensible
 - `.gitignore` actualizado
@@ -64,7 +64,7 @@ y este proyecto adhiere a [Semantic Versioning](https://semver.org/lang/es/).
 
 ## [Unreleased]
 
-### 🎯 Planeado
+### Planeado
 
 - Dashboard web de monitoreo
 - Notificaciones por email/Slack
@@ -78,12 +78,12 @@ y este proyecto adhiere a [Semantic Versioning](https://semver.org/lang/es/).
 
 ## Tipos de Cambios
 
-- `✨ Agregado` - Para nuevas funcionalidades
-- `🔧 Cambiado` - Para cambios en funcionalidades existentes
-- `🗑️ Deprecado` - Para funcionalidades que serán eliminadas
-- `🔥 Eliminado` - Para funcionalidades eliminadas
-- `🐛 Arreglado` - Para corrección de bugs
-- `🔐 Seguridad` - Para vulnerabilidades de seguridad
+- ` Agregado` - Para nuevas funcionalidades
+- ` Cambiado` - Para cambios en funcionalidades existentes
+- ` Deprecado` - Para funcionalidades que serán eliminadas
+- ` Eliminado` - Para funcionalidades eliminadas
+- ` Arreglado` - Para corrección de bugs
+- ` Seguridad` - Para vulnerabilidades de seguridad
 
 ---
 

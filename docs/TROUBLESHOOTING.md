@@ -1,8 +1,8 @@
-# 🐛 Solución de Problemas
+# Solución de Problemas
 
 Guía completa para resolver errores comunes.
 
-## 🔍 Diagnóstico General
+## Diagnóstico General
 
 Antes de buscar un error específico, verifica:
 
@@ -22,7 +22,7 @@ railway run python3 /scripts/commit_automator.py
 
 ---
 
-## 🚫 Errores de Despliegue
+## Errores de Despliegue
 
 ### Error: "failed to build: config: not found"
 
@@ -56,7 +56,7 @@ CMD ["n8n", "start"]
 
 ---
 
-## 🔐 Errores de Autenticación
+## Errores de Autenticación
 
 ### Error: "Authentication failed" al hacer push
 
@@ -71,7 +71,7 @@ CMD ["n8n", "start"]
 railway run bash
 cd /repo
 git config credential.helper store
-git push  # Usa el nuevo token como password
+git push # Usa el nuevo token como password
 ```
 
 ### Error: "Permission denied (publickey)"
@@ -85,7 +85,7 @@ git remote set-url origin https://github.com/USER/REPO.git
 
 ---
 
-## 🔄 Errores del Workflow
+## Errores del Workflow
 
 ### El workflow no se ejecuta automáticamente
 
@@ -94,8 +94,8 @@ git remote set-url origin https://github.com/USER/REPO.git
 **Solución**:
 1. En n8n, verifica que el toggle esté **verde**
 2. Verifica el Schedule Trigger:
-   - Mode: Interval o Cron
-   - Intervalo: 24 hours
+ - Mode: Interval o Cron
+ - Intervalo: 24 hours
 3. Prueba ejecutar manualmente: Click "Execute Workflow"
 
 ### Error: "No hay repositorio remoto configurado"
@@ -130,7 +130,7 @@ chown -R node:node /repo
 
 ---
 
-## 🌐 Errores de Acceso
+## Errores de Acceso
 
 ### Error: "Application failed to respond"
 
@@ -174,7 +174,7 @@ railway run env | grep N8N_BASIC_AUTH
 
 ---
 
-## 🐍 Errores de Python
+## Errores de Python
 
 ### Error: "requests module not found"
 
@@ -198,7 +198,7 @@ chmod +x /scripts/*.py
 
 ---
 
-## 🔄 Errores de Pull Request
+## Errores de Pull Request
 
 ### Error: "Token no tiene permisos"
 
@@ -215,8 +215,8 @@ chmod +x /scripts/*.py
 **Solución**: Verifica en `config/config.json`:
 ```json
 {
-  "github_repo_owner": "tu_usuario_exacto",
-  "github_repo_name": "nombre_repo_exacto"
+ "github_repo_owner": "tu_usuario_exacto",
+ "github_repo_name": "nombre_repo_exacto"
 }
 ```
 
@@ -228,13 +228,13 @@ chmod +x /scripts/*.py
 1. Verifica permisos del token
 2. Revisa si hay conflictos en GitHub
 3. Aumenta tiempo de espera en `pr_automator.py`:
-   ```python
-   time.sleep(10)  # En lugar de 5
-   ```
+ ```python
+ time.sleep(10) # En lugar de 5
+ ```
 
 ---
 
-## 💾 Errores de Volumen
+## Errores de Volumen
 
 ### Workflows desaparecen después de redeploy
 
@@ -243,8 +243,8 @@ chmod +x /scripts/*.py
 **Solución**:
 1. Railway → Settings → Volumes
 2. Add Volume:
-   - Mount Path: `/home/node/.n8n`
-   - Size: 1 GB
+ - Mount Path: `/home/node/.n8n`
+ - Size: 1 GB
 
 ### Error: "No space left on device"
 
@@ -253,15 +253,15 @@ chmod +x /scripts/*.py
 **Solución**:
 1. Aumenta el tamaño del volumen en Railway
 2. O limpia archivos innecesarios:
-   ```bash
-   railway run bash
-   du -sh /home/node/.n8n/*
-   # Elimina logs viejos si es necesario
-   ```
+ ```bash
+ railway run bash
+ du -sh /home/node/.n8n/*
+ # Elimina logs viejos si es necesario
+ ```
 
 ---
 
-## 📊 Errores de Configuración
+## Errores de Configuración
 
 ### Commits no aparecen en GitHub
 
@@ -287,7 +287,7 @@ Lista de zonas: https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
 
 ---
 
-## 🔧 Comandos Útiles de Diagnóstico
+## Comandos Útiles de Diagnóstico
 
 ```bash
 # Ver estado general
@@ -321,7 +321,7 @@ ps aux | grep n8n
 
 ---
 
-## 🆘 Solución Nuclear
+## Solución Nuclear
 
 Si nada funciona, reconstruye desde cero:
 
@@ -346,29 +346,29 @@ git push -u origin main
 
 ---
 
-## 📞 Obtener Ayuda
+## Obtener Ayuda
 
 Si ninguna solución funciona:
 
 1. **Copia los logs completos**:
-   ```bash
-   railway logs > logs.txt
-   ```
+ ```bash
+ railway logs > logs.txt
+ ```
 
 2. **Verifica la configuración**:
-   ```bash
-   railway run cat /config/config.json > config_actual.txt
-   ```
+ ```bash
+ railway run cat /config/config.json > config_actual.txt
+ ```
 
 3. **Abre un issue** en el repositorio con:
-   - Descripción del problema
-   - Logs relevantes
-   - Configuración (sin tokens)
-   - Pasos para reproducir
+ - Descripción del problema
+ - Logs relevantes
+ - Configuración (sin tokens)
+ - Pasos para reproducir
 
 ---
 
-## 📚 Recursos Adicionales
+## Recursos Adicionales
 
 - [Railway Documentation](https://docs.railway.app/)
 - [n8n Documentation](https://docs.n8n.io/)
@@ -377,7 +377,7 @@ Si ninguna solución funciona:
 
 ---
 
-## ✅ Checklist de Verificación
+## Checklist de Verificación
 
 Antes de reportar un problema, verifica:
 
@@ -390,4 +390,4 @@ Antes de reportar un problema, verifica:
 - [ ] Email de Git coincide con GitHub
 - [ ] Probaste ejecutar el script manualmente
 
-Si todo está ✅ y sigue sin funcionar, es hora de pedir ayuda.
+Si todo está y sigue sin funcionar, es hora de pedir ayuda.

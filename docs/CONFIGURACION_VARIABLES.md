@@ -1,15 +1,15 @@
-# 🔧 Sistema de Configuración - Variables de Entorno y config.json
+# Sistema de Configuración - Variables de Entorno y config.json
 
 Guía completa sobre cómo funciona el sistema de configuración del proyecto.
 
 ---
 
-## 📋 Orden de Prioridad
+## Orden de Prioridad
 
 El sistema de configuración sigue este orden de prioridad (de mayor a menor):
 
 ```
-1. Variables de Entorno (Railway/Sistema)  ← MÁXIMA PRIORIDAD
+1. Variables de Entorno (Railway/Sistema) ← MÁXIMA PRIORIDAD
 2. config.json
 3. Valores por defecto en el código
 ```
@@ -18,7 +18,7 @@ El sistema de configuración sigue este orden de prioridad (de mayor a menor):
 
 ---
 
-## 🎯 Variables de Entorno Disponibles
+## Variables de Entorno Disponibles
 
 ### Variables que se Leen Automáticamente
 
@@ -44,8 +44,8 @@ GENERIC_TIMEZONE=America/Bogota
 **En config.json:**
 ```json
 {
-  "git_user_name": "Commit Bot",
-  "git_user_email": "bot@example.com"
+ "git_user_name": "Commit Bot",
+ "git_user_email": "bot@example.com"
 }
 ```
 
@@ -53,38 +53,31 @@ GENERIC_TIMEZONE=America/Bogota
 
 ---
 
-## 📝 Archivo config.json
+## Archivo config.json
 
 ### Estructura Completa
 
 ```json
 {
-  "_comment": "Las variables de entorno tienen prioridad sobre este archivo",
-  "_comment_env": "Variables de entorno: GIT_USER_NAME, GIT_USER_EMAIL, GITHUB_TOKEN, GENERIC_TIMEZONE",
-  
-  "commits_per_day": 1,
-  "repo_path": "/repo",
-  "commit_message_template": "Commit automático del {date} #{number}",
-  
-  "_comment_git": "Estos valores se sobrescriben con GIT_USER_NAME y GIT_USER_EMAIL si existen",
-  "git_user_name": "Tu Nombre",
-  "git_user_email": "tu-email@ejemplo.com",
-  
-  "auto_push": true,
-  
-  "_comment_timezone": "Se sobrescribe con GENERIC_TIMEZONE si existe",
-  "timezone": "America/Bogota",
-  
-  "_comment_pr_mode": "Configuración para automatización de Pull Requests",
-  "use_pr_workflow": false,
-  
-  "_comment_token": "Se sobrescribe con GITHUB_TOKEN si existe",
-  "github_token": "",
-  
-  "github_repo_owner": "tu_usuario",
-  "github_repo_name": "commitDiario",
-  "merge_method": "squash",
-  "auto_cleanup_branch": true
+ "_comment": "Las variables de entorno tienen prioridad sobre este archivo",
+ "_comment_env": "Variables de entorno: GIT_USER_NAME, GIT_USER_EMAIL, GITHUB_TOKEN, GENERIC_TIMEZONE",
+ "commits_per_day": 1,
+ "repo_path": "/repo",
+ "commit_message_template": "Commit automático del {date} #{number}",
+ "_comment_git": "Estos valores se sobrescriben con GIT_USER_NAME y GIT_USER_EMAIL si existen",
+ "git_user_name": "Tu Nombre",
+ "git_user_email": "tu-email@ejemplo.com",
+ "auto_push": true,
+ "_comment_timezone": "Se sobrescribe con GENERIC_TIMEZONE si existe",
+ "timezone": "America/Bogota",
+ "_comment_pr_mode": "Configuración para automatización de Pull Requests",
+ "use_pr_workflow": false,
+ "_comment_token": "Se sobrescribe con GITHUB_TOKEN si existe",
+ "github_token": "",
+ "github_repo_owner": "tu_usuario",
+ "github_repo_name": "commitDiario",
+ "merge_method": "squash",
+ "auto_cleanup_branch": true
 }
 ```
 
@@ -93,80 +86,80 @@ GENERIC_TIMEZONE=America/Bogota
 #### Commits Básicos
 
 - **`commits_per_day`**: Número de commits a realizar cada día
-  - Tipo: `number`
-  - Ejemplo: `1`, `3`, `5`
-  - No se puede sobrescribir con variable de entorno
+ - Tipo: `number`
+ - Ejemplo: `1`, `3`, `5`
+ - No se puede sobrescribir con variable de entorno
 
 - **`repo_path`**: Ruta al repositorio Git
-  - Tipo: `string`
-  - Default: `"/repo"`
-  - En Railway siempre debe ser `"/repo"`
+ - Tipo: `string`
+ - Default: `"/repo"`
+ - En Railway siempre debe ser `"/repo"`
 
 - **`commit_message_template`**: Plantilla del mensaje de commit
-  - Tipo: `string`
-  - Variables: `{date}`, `{number}`
-  - Ejemplo: `"🤖 Automated commit {date} #{number}"`
+ - Tipo: `string`
+ - Variables: `{date}`, `{number}`
+ - Ejemplo: `" Automated commit {date} #{number}"`
 
 #### Configuración de Git
 
 - **`git_user_name`**: Nombre del autor del commit
-  - Tipo: `string`
-  - Variable de entorno: `GIT_USER_NAME` ✅
-  - Ejemplo: `"Leonardo Holguin"`
+ - Tipo: `string`
+ - Variable de entorno: `GIT_USER_NAME` 
+ - Ejemplo: `"Leonardo Holguin"`
 
 - **`git_user_email`**: Email del autor del commit
-  - Tipo: `string`
-  - Variable de entorno: `GIT_USER_EMAIL` ✅
-  - Ejemplo: `"leoanthonyholguinchavez@gmail.com"`
+ - Tipo: `string`
+ - Variable de entorno: `GIT_USER_EMAIL` 
+ - Ejemplo: `"leoanthonyholguinchavez@gmail.com"`
 
 #### Zona Horaria
 
 - **`timezone`**: Zona horaria para timestamps
-  - Tipo: `string`
-  - Variable de entorno: `GENERIC_TIMEZONE` ✅
-  - Ejemplo: `"America/Bogota"`, `"America/Lima"`, `"America/Mexico_City"`
+ - Tipo: `string`
+ - Variable de entorno: `GENERIC_TIMEZONE` 
+ - Ejemplo: `"America/Bogota"`, `"America/Lima"`, `"America/Mexico_City"`
 
 #### Modo Pull Request
 
 - **`use_pr_workflow`**: Activar modo Pull Request
-  - Tipo: `boolean`
-  - Valores: `true`, `false`
-  - No se puede sobrescribir con variable de entorno
+ - Tipo: `boolean`
+ - Valores: `true`, `false`
+ - No se puede sobrescribir con variable de entorno
 
 - **`github_token`**: Token de GitHub
-  - Tipo: `string`
-  - Variable de entorno: `GITHUB_TOKEN` ✅
-  - Ejemplo: `"ghp_..."`
-  - **Recomendación**: Usar variable de entorno por seguridad
+ - Tipo: `string`
+ - Variable de entorno: `GITHUB_TOKEN` 
+ - Ejemplo: `"ghp_..."`
+ - **Recomendación**: Usar variable de entorno por seguridad
 
 - **`github_repo_owner`**: Usuario/organización del repo
-  - Tipo: `string`
-  - Ejemplo: `"L50E02O"`
+ - Tipo: `string`
+ - Ejemplo: `"L50E02O"`
 
 - **`github_repo_name`**: Nombre del repositorio
-  - Tipo: `string`
-  - Ejemplo: `"commitDiario"`
+ - Tipo: `string`
+ - Ejemplo: `"commitDiario"`
 
 - **`merge_method`**: Método de merge para PRs
-  - Tipo: `string`
-  - Valores: `"squash"`, `"merge"`, `"rebase"`
-  - Recomendado: `"squash"`
+ - Tipo: `string`
+ - Valores: `"squash"`, `"merge"`, `"rebase"`
+ - Recomendado: `"squash"`
 
 - **`auto_cleanup_branch`**: Eliminar rama después del merge
-  - Tipo: `boolean`
-  - Valores: `true`, `false`
-  - Recomendado: `true`
+ - Tipo: `boolean`
+ - Valores: `true`, `false`
+ - Recomendado: `true`
 
 ---
 
-## 🚀 Configuración en Railway
+## Configuración en Railway
 
 ### Método Recomendado: Variables de Entorno
 
 **Ventajas:**
-- ✅ Más seguro (no se suben a Git)
-- ✅ Fácil de cambiar sin redeploy
-- ✅ Tienen prioridad sobre config.json
+- Más seguro (no se suben a Git)
+- Fácil de cambiar sin redeploy
+- Tienen prioridad sobre config.json
 
 **Cómo configurar:**
 
@@ -199,14 +192,14 @@ railway run python3 /scripts/commit_automator.py
 
 Deberías ver:
 ```
-✅ Variable de entorno GIT_USER_NAME cargada
-✅ Variable de entorno GIT_USER_EMAIL cargada
-✅ Variable de entorno GENERIC_TIMEZONE cargada
+ Variable de entorno GIT_USER_NAME cargada
+ Variable de entorno GIT_USER_EMAIL cargada
+ Variable de entorno GENERIC_TIMEZONE cargada
 ```
 
 ---
 
-## 💻 Configuración Local (Desarrollo)
+## Configuración Local (Desarrollo)
 
 ### Usar archivo .env
 
@@ -242,9 +235,9 @@ GITHUB_TOKEN=ghp_tu_token_aqui
 ```powershell
 # Leer el archivo .env y cargar variables
 Get-Content .env | ForEach-Object {
-    if ($_ -match '^([^=]+)=(.*)$') {
-        [Environment]::SetEnvironmentVariable($matches[1], $matches[2], "Process")
-    }
+ if ($_ -match '^([^=]+)=(.*)$') {
+ [Environment]::SetEnvironmentVariable($matches[1], $matches[2], "Process")
+ }
 }
 
 # Verificar
@@ -262,7 +255,7 @@ python scripts/commit_automator.py
 
 ---
 
-## 🔄 Casos de Uso
+## Casos de Uso
 
 ### Caso 1: Configuración Básica (Solo config.json)
 
@@ -271,11 +264,11 @@ python scripts/commit_automator.py
 ```json
 // config.json
 {
-  "commits_per_day": 1,
-  "git_user_name": "Leonardo",
-  "git_user_email": "leo@example.com",
-  "timezone": "America/Bogota",
-  "use_pr_workflow": false
+ "commits_per_day": 1,
+ "git_user_name": "Leonardo",
+ "git_user_email": "leo@example.com",
+ "timezone": "America/Bogota",
+ "use_pr_workflow": false
 }
 ```
 
@@ -295,10 +288,10 @@ GENERIC_TIMEZONE=America/Bogota
 **config.json:**
 ```json
 {
-  "commits_per_day": 1,
-  "git_user_name": "Commit Bot",
-  "git_user_email": "bot@example.com",
-  "use_pr_workflow": false
+ "commits_per_day": 1,
+ "git_user_name": "Commit Bot",
+ "git_user_email": "bot@example.com",
+ "use_pr_workflow": false
 }
 ```
 
@@ -321,11 +314,11 @@ GENERIC_TIMEZONE=America/Bogota
 **config.json:**
 ```json
 {
-  "commits_per_day": 1,
-  "use_pr_workflow": true,
-  "github_repo_owner": "L50E02O",
-  "github_repo_name": "commitDiario",
-  "merge_method": "squash"
+ "commits_per_day": 1,
+ "use_pr_workflow": true,
+ "github_repo_owner": "L50E02O",
+ "github_repo_name": "commitDiario",
+ "merge_method": "squash"
 }
 ```
 
@@ -336,35 +329,35 @@ GENERIC_TIMEZONE=America/Bogota
 
 ---
 
-## 🔒 Mejores Prácticas de Seguridad
+## Mejores Prácticas de Seguridad
 
-### ✅ Hacer
+### Hacer
 
 1. **Usar variables de entorno para datos sensibles**:
-   - ✅ `GITHUB_TOKEN` → Variable de entorno
-   - ✅ `GIT_USER_EMAIL` → Variable de entorno
+ - `GITHUB_TOKEN` → Variable de entorno
+ - `GIT_USER_EMAIL` → Variable de entorno
 
 2. **Usar config.json para configuración**:
-   - ✅ `commits_per_day`
-   - ✅ `commit_message_template`
-   - ✅ `use_pr_workflow`
+ - `commits_per_day`
+ - `commit_message_template`
+ - `use_pr_workflow`
 
 3. **Mantener .env en .gitignore**:
-   ```gitignore
-   .env
-   .env.local
-   .env.*.local
-   ```
+ ```gitignore
+ .env
+ .env.local
+ .env.*.local
+ ```
 
-### ❌ NO Hacer
+### NO Hacer
 
-1. ❌ Nunca subir `.env` a Git
-2. ❌ Nunca poner tokens en `config.json` que se sube a Git
-3. ❌ Nunca hacer commit de credenciales
+1. Nunca subir `.env` a Git
+2. Nunca poner tokens en `config.json` que se sube a Git
+3. Nunca hacer commit de credenciales
 
 ---
 
-## 🧪 Verificar Configuración
+## Verificar Configuración
 
 ### Script de Prueba
 
@@ -375,9 +368,9 @@ railway run python3 /scripts/test_setup.py
 ```
 
 Esto verificará:
-- ✅ Archivo config.json existe y es válido
-- ✅ Variables de entorno están configuradas
-- ✅ Prioridad de configuración es correcta
+- Archivo config.json existe y es válido
+- Variables de entorno están configuradas
+- Prioridad de configuración es correcta
 
 ### Verificación Manual
 
@@ -392,28 +385,28 @@ import os
 
 # Cargar config.json
 with open('/config/config.json') as f:
-    config = json.load(f)
+ config = json.load(f)
 
-print("📝 Configuración desde config.json:")
-print(f"  git_user_name: {config.get('git_user_name')}")
-print(f"  git_user_email: {config.get('git_user_email')}")
+print(" Configuración desde config.json:")
+print(f" git_user_name: {config.get('git_user_name')}")
+print(f" git_user_email: {config.get('git_user_email')}")
 
-print("\n🌍 Variables de entorno:")
-print(f"  GIT_USER_NAME: {os.getenv('GIT_USER_NAME')}")
-print(f"  GIT_USER_EMAIL: {os.getenv('GIT_USER_EMAIL')}")
-print(f"  GITHUB_TOKEN: {'***' if os.getenv('GITHUB_TOKEN') else 'No configurado'}")
+print("\n Variables de entorno:")
+print(f" GIT_USER_NAME: {os.getenv('GIT_USER_NAME')}")
+print(f" GIT_USER_EMAIL: {os.getenv('GIT_USER_EMAIL')}")
+print(f" GITHUB_TOKEN: {'***' if os.getenv('GITHUB_TOKEN') else 'No configurado'}")
 
-print("\n✅ Valores finales (con prioridad):")
+print("\n Valores finales (con prioridad):")
 final_name = os.getenv('GIT_USER_NAME') or config.get('git_user_name')
 final_email = os.getenv('GIT_USER_EMAIL') or config.get('git_user_email')
-print(f"  git_user_name: {final_name}")
-print(f"  git_user_email: {final_email}")
+print(f" git_user_name: {final_name}")
+print(f" git_user_email: {final_email}")
 EOF
 ```
 
 ---
 
-## 📚 Ejemplos Completos
+## Ejemplos Completos
 
 ### Ejemplo 1: Configuración Mínima
 
@@ -426,8 +419,8 @@ GIT_USER_EMAIL=leo@example.com
 **config.json:**
 ```json
 {
-  "commits_per_day": 1,
-  "use_pr_workflow": false
+ "commits_per_day": 1,
+ "use_pr_workflow": false
 }
 ```
 
@@ -444,20 +437,20 @@ GENERIC_TIMEZONE=America/Bogota
 **config.json:**
 ```json
 {
-  "commits_per_day": 1,
-  "commit_message_template": "🤖 Daily automated contribution {date}",
-  "auto_push": true,
-  "use_pr_workflow": true,
-  "github_repo_owner": "L50E02O",
-  "github_repo_name": "commitDiario",
-  "merge_method": "squash",
-  "auto_cleanup_branch": true
+ "commits_per_day": 1,
+ "commit_message_template": " Daily automated contribution {date}",
+ "auto_push": true,
+ "use_pr_workflow": true,
+ "github_repo_owner": "L50E02O",
+ "github_repo_name": "commitDiario",
+ "merge_method": "squash",
+ "auto_cleanup_branch": true
 }
 ```
 
 ---
 
-## 🆘 Solución de Problemas
+## Solución de Problemas
 
 ### Problema: Variables de entorno no se cargan
 
@@ -498,7 +491,7 @@ railway variables set GITHUB_TOKEN=ghp_tu_token_aqui
 
 ---
 
-## 📖 Documentación Relacionada
+## Documentación Relacionada
 
 - [Guía del Token de GitHub](GITHUB_TOKEN_GUIDE.md)
 - [Configuración del Workflow](CONFIGURACION_WORKFLOW.md)

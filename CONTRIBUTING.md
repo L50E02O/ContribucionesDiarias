@@ -1,8 +1,8 @@
-# 🤝 Guía de Contribución
+# Guía de Contribución
 
 ¡Gracias por tu interés en contribuir a este proyecto! Toda ayuda es bienvenida.
 
-## 📋 Cómo Contribuir
+## Cómo Contribuir
 
 ### 1. Fork el Repositorio
 
@@ -46,7 +46,7 @@ Ve a tu fork en GitHub y click "New Pull Request".
 
 ---
 
-## 📝 Convenciones de Código
+## Convenciones de Código
 
 ### Python (PEP 8)
 
@@ -57,16 +57,14 @@ Ve a tu fork en GitHub y click "New Pull Request".
 
 ```python
 def mi_funcion(parametro: str) -> bool:
-    """
-    Descripción breve de la función.
-    
-    Args:
-        parametro: Descripción del parámetro
-        
-    Returns:
-        Descripción del retorno
-    """
-    return True
+ """
+ Descripción breve de la función.
+ Args:
+ parametro: Descripción del parámetro
+ Returns:
+ Descripción del retorno
+ """
+ return True
 ```
 
 ### Commits (Conventional Commits)
@@ -97,7 +95,7 @@ docs(readme): actualizar instrucciones de instalación
 
 ---
 
-## 🧪 Testing
+## Testing
 
 Antes de hacer un PR:
 
@@ -115,7 +113,7 @@ docker run -it --rm test-commit-automation
 
 ---
 
-## 📚 Documentación
+## Documentación
 
 Si agregas nuevas funcionalidades:
 
@@ -126,7 +124,7 @@ Si agregas nuevas funcionalidades:
 
 ---
 
-## 🐛 Reportar Bugs
+## Reportar Bugs
 
 ### Antes de Reportar
 
@@ -170,8 +168,8 @@ Pega logs aquí (sin tokens)
 ## Configuración
 ```json
 {
-  "commits_per_day": 1,
-  ...
+ "commits_per_day": 1,
+ ...
 }
 ```
 
@@ -183,7 +181,7 @@ Pega logs aquí (sin tokens)
 
 ---
 
-## 💡 Sugerir Funcionalidades
+## Sugerir Funcionalidades
 
 ### Antes de Sugerir
 
@@ -202,7 +200,7 @@ Incluye:
 
 ---
 
-## 🎯 Áreas que Necesitan Ayuda
+## Áreas que Necesitan Ayuda
 
 ### Alta Prioridad
 
@@ -227,7 +225,7 @@ Incluye:
 
 ---
 
-## 📖 Recursos
+## Recursos
 
 - [Python PEP 8](https://pep8.org/)
 - [Conventional Commits](https://www.conventionalcommits.org/)
@@ -237,7 +235,7 @@ Incluye:
 
 ---
 
-## ✅ Checklist antes del PR
+## Checklist antes del PR
 
 - [ ] El código sigue las convenciones del proyecto
 - [ ] Los commits siguen Conventional Commits
@@ -249,7 +247,7 @@ Incluye:
 
 ---
 
-## 🙏 Código de Conducta
+## Código de Conducta
 
 ### Nuestro Compromiso
 
@@ -257,21 +255,21 @@ Crear un ambiente acogedor y respetuoso para todos.
 
 ### Comportamiento Esperado
 
-- ✅ Ser respetuoso y considerado
-- ✅ Aceptar críticas constructivas
-- ✅ Enfocarse en lo mejor para la comunidad
-- ✅ Mostrar empatía hacia otros
+- Ser respetuoso y considerado
+- Aceptar críticas constructivas
+- Enfocarse en lo mejor para la comunidad
+- Mostrar empatía hacia otros
 
 ### Comportamiento Inaceptable
 
-- ❌ Lenguaje ofensivo o discriminatorio
-- ❌ Acoso o intimidación
-- ❌ Spam o autopromoción excesiva
-- ❌ Publicar información privada de otros
+- Lenguaje ofensivo o discriminatorio
+- Acoso o intimidación
+- Spam o autopromoción excesiva
+- Publicar información privada de otros
 
 ---
 
-## 📞 Contacto
+## Contacto
 
 Si tienes preguntas sobre cómo contribuir:
 
@@ -280,8 +278,8 @@ Si tienes preguntas sobre cómo contribuir:
 
 ---
 
-## 🎉 Reconocimiento
+## Reconocimiento
 
 Todos los contribuidores serán mencionados en el README.md.
 
-¡Gracias por hacer este proyecto mejor! 🚀
+¡Gracias por hacer este proyecto mejor! 
