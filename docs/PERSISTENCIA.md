@@ -20,6 +20,19 @@ Los contenedores Docker son **efímeros** por naturaleza. Esto significa que:
 
 ## La Solución: Dos Enfoques
 
+### ⚠️ Importante: Persistencia Temporal vs Permanente
+
+**Persistencia Temporal (sin volúmenes)**:
+- ✅ Los datos persisten **mientras el contenedor NO se reinicie**
+- ❌ Los datos se pierden cuando Railway hace un redeploy
+- ❌ Los datos se pierden si el contenedor se reinicia por cualquier motivo
+- ✅ Útil para pruebas o si no planeas hacer redeploys frecuentes
+
+**Persistencia Permanente (con volúmenes)**:
+- ✅ Los datos persisten **incluso después de redeploys**
+- ✅ Los datos persisten después de reinicios del contenedor
+- ✅ Solución recomendada para producción
+
 ### 1. Volumen Persistente (Para n8n)
 
 **Qué es**: Un disco virtual que Railway mantiene entre deploys.
@@ -31,7 +44,7 @@ Los contenedores Docker son **efímeros** por naturaleza. Esto significa que:
 3. Configuración:
    ```
    Mount Path: /home/node/.n8n
-   Size: 1 GB
+   Size: 0.5 GB (máximo en plan gratuito)
    ```
 4. Click **"Add"**
 
@@ -41,7 +54,12 @@ Los contenedores Docker son **efímeros** por naturaleza. Esto significa que:
 - ✅ Configuración de n8n
 - ✅ Historial de ejecuciones
 
-**Costo**: Incluido en el plan gratuito (hasta 1 GB)
+**Costo en Plan Gratuito**:
+- ✅ Volúmenes están disponibles en el plan gratuito
+- 📦 Máximo 0.5 GB por volumen
+- 📦 Máximo 1 volumen por proyecto
+- 💰 $0.15 por GB/mes (se cobra del crédito mensual de $5)
+- 💡 Con 0.5 GB, el costo es ~$0.075/mes (muy bajo)
 
 ---
 
@@ -85,14 +103,21 @@ GIT_USER_EMAIL=tu-email@ejemplo.com
 
 ## Configuración Paso a Paso
 
-### Paso 1: Configurar Volumen para n8n
+### Paso 1: Configurar Volumen para n8n (Opcional pero Recomendado)
+
+**Si NO usas volúmenes**:
+- Los datos persisten mientras el contenedor no se reinicie
+- Si haces un redeploy, perderás los workflows de n8n
+- Deberás reimportar los workflows después de cada redeploy
+
+**Si usas volúmenes** (recomendado):
 
 1. Ve a Railway → Tu servicio → **Settings**
 2. Scroll hasta **"Volumes"**
 3. Si NO hay volumen configurado:
    - Click **"Add Volume"**
    - Mount Path: `/home/node/.n8n`
-   - Size: `1 GB`
+   - Size: `0.5 GB` (máximo en plan gratuito)
    - Click **"Add"**
 
 Railway reiniciará el servicio automáticamente.
@@ -210,6 +235,26 @@ python3 /scripts/commit_automator.py
 
 ## Preguntas Frecuentes
 
+### ¿Puedo mantener datos sin volúmenes si no reinicio el contenedor?
+
+**Respuesta**: **SÍ**, pero con limitaciones importantes:
+
+✅ **Lo que SÍ funciona**:
+- Los datos persisten en el sistema de archivos del contenedor
+- Los workflows de n8n se mantienen
+- La configuración se mantiene
+- El repositorio Git se mantiene
+
+❌ **Lo que NO funciona**:
+- Si Railway hace un redeploy automático, pierdes todo
+- Si el contenedor se reinicia por error, pierdes todo
+- Si actualizas el código (push a GitHub), Railway puede hacer redeploy
+- Si cambias variables de entorno, Railway puede reiniciar el servicio
+
+**Recomendación**:
+- Si solo estás probando y no planeas hacer redeploys: ✅ Funciona sin volúmenes
+- Si quieres persistencia garantizada: ✅ Usa volúmenes (costo mínimo ~$0.075/mes)
+
 ### ¿Por qué no usar volumen para `/repo` también?
 
 **Respuesta**: No es necesario porque:
@@ -268,17 +313,26 @@ Para crear el token:
 ### Plan Gratuito de Railway:
 
 - **Crédito mensual**: $5 USD
-- **Volumen de 1 GB**: Incluido en el plan gratuito
-- **Costo adicional**: $0
+- **Volumen máximo**: 0.5 GB por volumen
+- **Costo del volumen**: $0.15 por GB/mes
+- **Costo estimado con 0.5 GB**: ~$0.075/mes
 
 ### Uso Real Estimado:
 
 ```
-Servicio n8n + volumen 1GB:
-- Costo mensual: ~$1.50-2.00
+Servicio n8n + volumen 0.5GB:
+- Costo del servicio: ~$1.50-2.00/mes
+- Costo del volumen: ~$0.075/mes
+- Total: ~$1.58-2.08/mes
 - Crédito gratis: $5.00
-- Resultado: GRATIS
+- Resultado: GRATIS (dentro del crédito mensual)
 ```
+
+### Sin Volúmenes (Persistencia Temporal):
+
+- **Costo**: $0 adicional
+- **Limitación**: Los datos se pierden en cada redeploy
+- **Ventaja**: Funciona perfectamente mientras no reinicies el contenedor
 
 ---
 
@@ -290,9 +344,11 @@ Servicio n8n + volumen 1GB:
 
 **Solución**:
 1. Verifica en Railway → Settings → Volumes
-2. Debe aparecer: `/home/node/.n8n` → 1 GB
+2. Debe aparecer: `/home/node/.n8n` → 0.5 GB (o el tamaño que configuraste)
 3. Si no está, agrégalo
 4. Redeploy el servicio
+
+**Nota**: Si no usas volúmenes, esto es normal. Los datos solo persisten mientras el contenedor no se reinicie.
 
 ### El repositorio no se clona:
 
@@ -345,6 +401,12 @@ Si todos los checks están ✅, tu sistema está correctamente configurado y per
 - ✅ Workflows de n8n
 - ✅ Credenciales de n8n
 - ✅ Configuración de n8n
+- ✅ Persiste incluso después de redeploys
+
+### Lo que PERSISTE temporalmente (sin volumen):
+- ✅ Workflows de n8n (mientras el contenedor no se reinicie)
+- ✅ Credenciales de n8n (mientras el contenedor no se reinicie)
+- ⚠️ Se pierde en cada redeploy o reinicio
 
 ### Lo que se REGENERA automáticamente:
 - ✅ Repositorio Git (clonado en cada inicio)
@@ -355,4 +417,6 @@ Si todos los checks están ✅, tu sistema está correctamente configurado y per
 - ✅ Commits en GitHub (están en el repositorio remoto)
 - ✅ Configuración del servicio (Railway la mantiene)
 
-**Resultado**: Sistema completamente funcional y persistente entre deploys. 🎉
+**Resultado**: 
+- **Con volúmenes**: Sistema completamente funcional y persistente entre deploys. 🎉
+- **Sin volúmenes**: Sistema funcional mientras no se reinicie el contenedor. ⚠️

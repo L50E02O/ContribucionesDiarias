@@ -10,7 +10,7 @@
 **Mantén tu racha de contribuciones en GitHub automáticamente** 
 
 [Inicio Rápido](docs/QUICK_START.md) • [Documentación](docs/) • [Licencia](#-licencia)
-
+         
 </div>
 
 ---
