@@ -1,0 +1,36 @@
+# Render: usa este archivo cuando deploy.yml → target: render
+# Ref: deploy.yml | docs/RENDER_DEPLOY.md
+
+services:
+  - type: web
+    runtime: docker
+    name: n8n
+
+    # Persistencia: disco para workflows y credenciales de n8n
+    disk:
+      name: n8n-data
+      mountPath: /home/node/.n8n
+      sizeGB: 1
+
+    # Variables que debes configurar en el Dashboard de Render (Environment)
+    # WEBHOOK_URL: tu URL de Render (ej: https://n8n-xxx.onrender.com)
+    envVars:
+      - key: N8N_BASIC_AUTH_ACTIVE
+        value: "true"
+      - key: N8N_BASIC_AUTH_USER
+        sync: false
+      - key: N8N_BASIC_AUTH_PASSWORD
+        sync: false
+      - key: N8N_ENCRYPTION_KEY
+        sync: false
+      - key: WEBHOOK_URL
+        sync: false
+      - key: GENERIC_TIMEZONE
+        value: America/Bogota
+      - key: TZ
+        value: America/Bogota
+      - key: N8N_LOG_LEVEL
+        value: info
+
+    healthCheckPath: /
+    plan: free
